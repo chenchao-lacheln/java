@@ -2,12 +2,20 @@ package com.chapter.seventh;
 
 public class Homework04 {
     public static void main(String[] args) {
-        int[] array1 = {1,2,3};
-        A03 p1 = new A03();
-        int[] res = p1.copyArr(array1);
-        System.out.println("newArray = " + res);
+        int[] oddArray = {1,2,3};
+        A03 a03 = new A03();
+        int[] newArray = a03.copyArr(oddArray);
+        //遍历newArray，验证
+        System.out.println("====返回的newArray数组情况如下====");
+        for (int i = 0;i < newArray.length;i++){
+            System.out.print(newArray[i] + "\t");
+        }
     }
 }
+/*
+编写类A03，实现数组的复制功能copyArr，输入旧数组，返回新数组，新数组和旧数组保持一样
+
+ */
 
 class A03{
     public int[] copyArr(int[] oddArray){
