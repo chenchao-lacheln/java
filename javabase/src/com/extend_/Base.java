@@ -9,7 +9,7 @@ public class Base {//父类
 
     //无参构造器
     public Base() {
-        System.out.println("base()-----");
+        System.out.println("子类base()的构造器被调用-----");
     }
 
     //父类提供一个public的方法，返回n4
