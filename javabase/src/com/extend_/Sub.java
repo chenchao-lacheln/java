@@ -1,12 +1,14 @@
 package com.extend_;
 
+
+//输入command + h  可以看到类的继承关系
 public class Sub extends Base{//子类
 
     //有参构造器
     public Sub(String name,int age){
         //1.调用父类的无参构造器如下，或者 什么都不写 默认调用 super();
 //        super();//父类的无参构造器
-        //调用父类的Base(String name)构造器
+        //2.调用父类的Base(String name)构造器
         super("超哥");
         System.out.println("子类Sub(String name,int age)构造器被调用-----");
 
