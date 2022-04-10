@@ -8,10 +8,11 @@ public class Base {//父类
     private int n4 = 400;
 
     //无参构造器
-    public Base() {
-        System.out.println("父类base()的构造器被调用-----");
-    }
+//    public Base() {
+//        System.out.println("父类base()的构造器被调用-----");
+//    }
 
+    //父类没有指定默认构造器
     //编写一个有参构造器
     public Base(String name,int ade){
         System.out.println("父类Base(String name,int ade)的构造器被调用-----");
