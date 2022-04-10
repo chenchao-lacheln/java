@@ -8,6 +8,22 @@ public class Encapsulatation01 {
         person.setSalary(30000);
         System.out.println(person.info());
         System.out.println(person.getSalary());
+
+        //自己使用构造器，指定属性
+        Person lacheln = new Person("lacheln", 2000, 30000);
+        System.out.println("=====输出lacheln的信息=====");
+        System.out.println(lacheln.info());
+        /**
+         * set方法通过构造器，破解了
+         * =====输出lacheln的信息=====
+         * 信息为name = lacheln	age = 2000	salary = 30000.0
+         *
+         * 将set方法设置在构造器中后，即可完成校验
+         * 名字的长度不对，需要（2-6）个字符,给一个默认名字
+         * 您设置的年龄不对，需要在（1-120），给默认年龄18岁
+         * =====输出lacheln的信息=====
+         * 信息为name = 无名大侠	age = 18	salary = 30000.0
+         */
     }
 }
 
@@ -15,6 +31,21 @@ class Person{
     public String name;//名字公有话
     private int age;
     private double salary;
+
+    //构建一个无参构造器 command + n
+    public Person() {
+    }
+    //构建一个带三个属性的构造器
+    public Person(String name, int age, double salary) {
+//        this.name = name;
+//        this.age = age;
+//        this.salary = salary;
+        //我们可以将set方法写在构造器中，这样仍然可以进行验证
+        setName(name);//等价于this.setName(name)  setName就是指的本类的方法
+        setAge(age);
+        setSalary(salary);
+    }
+
     //自己写setXxx 和getXxx太慢，使用快捷键
     //然后根据要求来完善我们的代码
     public String getName() {
