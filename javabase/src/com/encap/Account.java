@@ -1,9 +1,19 @@
 package com.encap;
 
 public class Account {
-    public String name;
+    //为了封装，将3个属性设置为private
+    private String name;
     private double balance;
-    private int pwd;
+    private String pwd;
+
+    //提供2个构造器
+    public Account() {
+    }
+    public Account(String name, double balance, String pwd) {
+        this.setName(name);
+        this.setBalance(balance);
+        this.setPwd(pwd);
+    }
 
     public String getName(){
         return name;
@@ -26,24 +36,26 @@ public class Account {
         if (balance > 20) {
             this.balance = balance;
         }else {
-            System.out.println("余额不足20元，无法进行交易");
+            System.out.println("余额不足20元，无法进行交易,默认为0");
         }
     }
 
-    public int getPwd(){
+    public String getPwd(){
         return pwd;
     }
-    public void setPwd(int pwd){
+    public void setPwd(String pwd){
         //判断 密码必须是6位
-        if (pwd == 6) {
+        if (pwd.length() == 6) {
             this.pwd = pwd;
         }else {
-            System.out.println("密码长度错误，必须是6位密码");
+            System.out.println("密码长度错误，必须是6位密码，默认密码为000000");
+            this.pwd = "000000";
         }
     }
 
     //返回属性信息
     public String info(){
+        //可以增加权限的校验
         return "该账号的信息如下" + "name = " + name + "\tbalance = " + balance + "\tpwd = " + pwd;
     }
 
