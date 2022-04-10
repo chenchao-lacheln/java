@@ -8,14 +8,19 @@ public class Base {//父类
     private int n4 = 400;
 
     //无参构造器
-//    public Base() {
-//        System.out.println("父类base()的构造器被调用-----");
-//    }
+    public Base() {
+        System.out.println("父类Base()的构造器被调用-----");
+    }
 
     //父类没有指定默认构造器
-    //编写一个有参构造器
-    public Base(String name,int ade){
-        System.out.println("父类Base(String name,int ade)的构造器被调用-----");
+    //第一个有参构造器
+    public Base(String name,int age){
+        System.out.println("父类Base(String name,int age)的构造器被调用-----");
+    }
+
+    //第二个有参构造器
+    public Base(String name){
+        System.out.println("父类Base(String name)的构造器被调用-----");
     }
     //父类提供一个public的方法，返回n4
     public int getN4(){

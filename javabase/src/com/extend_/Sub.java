@@ -2,6 +2,16 @@ package com.extend_;
 
 public class Sub extends Base{//子类
 
+    //有参构造器
+    public Sub(String name,int age){
+        //1.调用父类的无参构造器如下，或者 什么都不写 默认调用 super();
+//        super();//父类的无参构造器
+        //调用父类的Base(String name)构造器
+        super("超哥");
+        System.out.println("子类Sub(String name,int age)构造器被调用-----");
+
+    }
+
     public Sub() {//构造器
 //        super();// 默认调用父类的无参构造器（打比方：人出生了就会默认有个身份证））
 //        这里会默认有个super(); 调用父类的午餐构造器

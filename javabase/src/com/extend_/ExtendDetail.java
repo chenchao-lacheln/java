@@ -10,13 +10,13 @@ public class ExtendDetail {
 
         System.out.println("=====第二个对象=====");
         Sub sub1 = new Sub("lacheln");//创建子类对象 sub1
+
+        System.out.println("=====第三个对象=====");
+        Sub sub2 = new Sub("king",10);
         /**
-         * =====第一个对象=====
-         * 父类Base(String name,int ade)的构造器被调用-----
-         * 子类Sub()构造器被调用-----
-         * =====第二个对象=====
-         * 父类Base(String name,int ade)的构造器被调用-----
-         * 字类Sub(String name)构造器被调用-----
+         =====第三个对象=====
+         父类Base()的构造器被调用a-----
+         子类Sub(String name,int age)构造器被调用-----
          */
 
     }
