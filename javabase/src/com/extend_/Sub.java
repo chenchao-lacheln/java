@@ -5,7 +5,13 @@ public class Sub extends Base{//子类
     public Sub() {//构造器
 //        super();// 默认调用父类的无参构造器（打比方：人出生了就会默认有个身份证））
 //        这里会默认有个super(); 调用父类的午餐构造器
-        System.out.println("父类Sub()构造器被调用-----");
+        System.out.println("子类Sub()构造器被调用-----");
+    }
+
+    //当创建子类对象时，不管使用子类哪个构造器，默认情况下总会去调用父类的无参构造器
+    public Sub(String name){
+        //do nothing....
+        System.out.println("字类Sub(String name)构造器被调用-----");
     }
 
     public void sayOk(){//子类方法
