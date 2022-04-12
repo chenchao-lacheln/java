@@ -17,6 +17,7 @@ public class ExtendTheory {
         System.out.println(son.name);//返回的就是大头儿子
         System.out.println(son.age);//返回Father中的39
         System.out.println(son.hobby);//返回GrandPa中的旅行
+        System.out.println(son.getAge1());
     }
 }
 class GrandPa {//爷爷类
@@ -26,6 +27,13 @@ class GrandPa {//爷爷类
 class Father extends GrandPa {//父类
     String name = "大头爸爸";
     int age = 39;
+
+    //父类中的private属性无法直接访问，可以用public创建一个方法来进行访问
+    private int age1 = 45;
+
+    public int getAge1() {
+        return age1;
+    }
 }
 class Son extends Father {//子类
     String name = "大头儿子";
