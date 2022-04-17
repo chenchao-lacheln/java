@@ -24,19 +24,16 @@ class GrandPa {//爷爷类
     String name = "大头爷爷";
     String hobby = "旅行";
 }
-class Father extends GrandPa {//父类
+class Father<develop1> extends GrandPa {//父类
     String name = "大头爸爸";
     int age = 39;
-<<<<<<< HEAD
     //父类中的属性如果设置为private，则在内存中仍然存在该属性，但是不能直接访问，
     // 只能通过创建一个公有方法进行访问
-    private int age1= 45;
-=======
+//    private int age1= 45;
 
     //父类中的private属性无法直接访问，可以用public创建一个方法来进行访问
     private int age1 = 45;
 
->>>>>>> develop1.0.0
     public int getAge1() {
         return age1;
     }
