@@ -4,6 +4,16 @@ public class B extends A{
 
     public int n1 = 888;
 
+    //编写测试方法
+    public void test(){
+        /**
+         * super的访问不限于直接父亲，如果爷爷类和本类中有同名的成员，也可以使用super去访问爷爷类的成员
+         * 如果多个基类（上级类）中都有同名的成员，使用super访问遵循就近原则。 A->B->C
+         */
+        System.out.println("super.ni = " + super.n1);
+        super.cal();
+    }
+
     //访问父类的属性 , 但不能访问父类的 private 属性 [案例]super.属性名
     public void hi(){
         System.out.println(super.n1 + " " + super.n2 + " "  + super.n3);//super.n4为private不能直接访问
