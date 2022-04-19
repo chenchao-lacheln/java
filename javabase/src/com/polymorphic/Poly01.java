@@ -10,8 +10,14 @@ public class Poly01 {
 
         Cat cat = new Cat("小花猫");
         Fish fish = new Fish("黄花鱼");
-        System.out.println("======");
+        System.out.println("=====================");
         tom.feed(cat,fish);
+
+        //添加 给小猪喂米饭
+        Pig pig = new Pig("小花猪");
+        Rice rice = new Rice("大米饭");
+        System.out.println("=====================");
+        tom.feed(pig,rice);
 
     }
 }

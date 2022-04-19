@@ -18,5 +18,18 @@ package com.polymorphic.objectploy;
  *      4.2比如，怎么知道animal的运行类型是哪一个呢？就看 = 号的右边 -> 也就是Dog()，编程了Cat，就是Cat
  */
 public class PloyObject {
+    public static void main(String[] args) {
+        //体验对象多态的特点
 
+        //animal的编译类型就是Animal，运行类型就是Dog (编译就是javac的时候，真正运行程序的时候就是java)
+        Animal1 animal1 = new Dog();
+        //如何确定animal.cry();是调用的哪个方法？当执行cray的时候
+        //当执行cray的时候，就看animal这话对象的运行类型是什么
+        //下面的语句，animal的运行类型是Dog，所以cry就是Dog的cry
+        animal1.cry();//Dog cry()小狗汪汪叫。。。。
+
+        //animal的编译类型仍然是Animal，运行类型就是Cat
+        animal1 = new Cat();
+        animal1.cry();//Cat cry()小猫喵喵叫。。。。
+    }
 }
