@@ -22,14 +22,14 @@ public class PloyObject {
         //体验对象多态的特点
 
         //animal的编译类型就是Animal，运行类型就是Dog (编译就是javac的时候，真正运行程序的时候就是java)
-        Animal animal = new Dog();
+        Animal1 animal1 = new Dog();
         //如何确定animal.cry();是调用的哪个方法？当执行cray的时候
         //当执行cray的时候，就看animal这话对象的运行类型是什么
         //下面的语句，animal的运行类型是Dog，所以cry就是Dog的cry
-        animal.cry();//Dog cry()小狗汪汪叫。。。。
+        animal1.cry();//Dog cry()小狗汪汪叫。。。。
 
         //animal的编译类型仍然是Animal，运行类型就是Cat
-        animal = new Cat();
-        animal.cry();//Cat cry()小猫喵喵叫。。。。
+        animal1 = new Cat();
+        animal1.cry();//Cat cry()小猫喵喵叫。。。。
     }
 }

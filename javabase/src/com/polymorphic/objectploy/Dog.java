@@ -1,6 +1,6 @@
 package com.polymorphic.objectploy;
 
-public class Dog extends Animal{
+public class Dog extends Animal1 {
 
     @Override
     public void cry() {
