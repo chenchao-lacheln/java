@@ -1,5 +1,4 @@
-import com.polymorphic.detail_.Animal;
-import com.polymorphic.detail_.Cat;
+package com.polymorphic.detail_;
 
 public class PloyDetail {
     public static void main(String[] args) {
@@ -18,5 +17,23 @@ public class PloyDetail {
         animal.run();
         animal.show();
         animal.sleep();
+
+        /**
+         * 实现调用Cat的catchMouse方法
+         * 多态的向下转型
+         * 1.语法：子类类型 引用名 = （子类类型）父类引用；
+         */
+        Cat cat = (Cat) animal;
+        //cat的编译类型和运行类型是什么？编译类型Cat和运行类型Cat
+        cat.catchMouse();
+
+        //2.要求父类的引用必须指向的是当前目标类型的对象
+        //2.1 Animal animal = new Cat();相当于animal这个对象引用指向堆里面的Cat对象
+        //2.2 Cat cat = (Cat) animal; 进行强转以后，Cat这个引用对象也指向Cat对象
+        //2.3 相当于现在有两个引用指向Cat对象，一个是父类的引用，一个是子类的引用
+
+//        Dog dog = (Dog) animal;//错误的，相当于把猫转成狗
+        //Exception in thread "main" java.lang.ClassCastException: com.polymorphic.detail_.Cat cannot be cast to com.polymorphic.detail_.Dog
+        //	at com.polymorphic.detail_.PloyDetail.main(PloyDetail.java:34)
     }
 }
