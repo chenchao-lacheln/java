@@ -1,10 +1,12 @@
+import com.polymorphic.detail_.Animal;
+import com.polymorphic.detail_.Cat;
 
 public class PloyDetail {
     public static void main(String[] args) {
 
         //向上转型：父类的引用指向了子类的对象
         //语法:父类类型 引用名 = new 子类类型()；
-        Animal animal = new Cat();
+         Animal animal = new Cat();
         Object obj = new Cat();//Object是Animal的父类 也是cat的父类 可以进行引用
 
         //1.可以调用父类的所有成员（需遵守访问权限：比如private）
