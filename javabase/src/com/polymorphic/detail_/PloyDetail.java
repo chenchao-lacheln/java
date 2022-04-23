@@ -1,4 +1,3 @@
-package com.polymorphic.detail_;
 
 public class PloyDetail {
     public static void main(String[] args) {
