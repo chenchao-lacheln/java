@@ -11,6 +11,7 @@ public class SmallChangeSys {
      * 1.先完成显示菜单，并可以选择菜单，给出相应的提示
      * 2.完成零钱通明细
      * 3.收益入账
+     * 4.消费
      */
     public static void main(String[] args) {
 
@@ -35,6 +36,12 @@ public class SmallChangeSys {
         Date date = null;//date 是 java.util.Date 类型，表示日期
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");//用户日期格式化
 
+        /**
+         * 4.消费
+         * （1）定义新变量，保存消费原因
+         */
+
+        String note = "";
         do {
             System.out.println("\n==========零钱通菜单==========");
             System.out.println("\t\t1 零钱通明细");
@@ -51,7 +58,7 @@ public class SmallChangeSys {
                     System.out.println(details);
                     break;
                 case "2":
-                    System.out.println("收益入账金额：");
+                    System.out.print("收益入账金额：");
                     money = scanner.nextDouble();
                     //money的值得范围 需要进行校验
 
@@ -62,7 +69,15 @@ public class SmallChangeSys {
 
                     break;
                 case "3":
-                    System.out.println("3 消    费");
+                    System.out.print("消费金额：");
+                    money = scanner.nextDouble();
+                    //money的值得范围 需要进行校验
+                    System.out.print("消费说明：");
+                    note = scanner.next();
+                    balance -= money;
+                    //拼接收益入账信息到 details
+                    date = new Date();//获取当前日志
+                    details += "\n" + note + "\t-" + money + "\t" + simpleDateFormat.format(date) + "\t" + "余额" + balance;
                     break;
                 case "4":
                     System.out.println("4 退    出");
