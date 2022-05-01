@@ -12,6 +12,8 @@ public class SmallChangeSys {
      * 2.完成零钱通明细
      * 3.收益入账
      * 4.消费
+     * 5.退出
+     * 6.用户输入4退出时，给出提示"你确定要退出吗？y/n" ，必须输入正确的y/n，否则循环输入指令，直到输入y或者n
      */
     public static void main(String[] args) {
 
@@ -80,8 +82,33 @@ public class SmallChangeSys {
                     details += "\n" + note + "\t-" + money + "\t" + simpleDateFormat.format(date) + "\t" + "余额" + balance;
                     break;
                 case "4":
-                    System.out.println("4 退    出");
-                    loop = false;
+                    /**
+                     * 6.用户输入4退出时，给出提示"你确定要退出吗？y/n" ，必须输入正确的y/n，否则循环输入指令，直到输入y或者n
+                     * （1）定义一个变量choice，接收用户输入
+                     * （2）使用while + break 死循环，不停的提示输入，直到输入的值为 y 或者 n
+                     * （3）退出while后，再判断choice是Y 还是n，来决定是否退出
+                     * （4）一段代码，完成一个小功能，最好不要混合在一起
+                     */
+                    String choice = "";
+                     while (true){//必须输入y/n，否则一直循环
+                         System.out.println("你确定要退出吗？y/n");
+                         choice = scanner.next();
+                         if ("y".equals(choice) || "n".equals(choice)){
+                             break;
+                         }
+
+                         //尽力减少代码耦合性
+//                         if ("y".equals(choice)){
+//                             loop = false;
+//                             break;
+//                         }else if ("n".equals(choice)){
+//                             break;
+//                         }
+                     }
+                     //当用户退出while后，进行判断
+                    if (choice.equals("y")){
+                        loop = false;
+                    }
                     break;
                 default:
                     System.out.println("选择有误，请重先选择");
