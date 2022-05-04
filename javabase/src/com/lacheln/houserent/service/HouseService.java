@@ -39,4 +39,42 @@ public class HouseService {
         newHouse.setId(++idCounter);//和上面的注销代码等价
         return true;
     }
+
+    //del方法，删除一个房屋信息
+    public boolean del(int delId){//接收一个要删除的id号
+        //先找到要删除的房屋的信息对应的下标
+        //注意：下标和房屋编号不是一回事
+        int index = -1;
+        //通过delId 和 已经存在的房屋信息的id进行比较，判断该房屋信息是否存在
+        for (int i = 0; i < houseNum; i++) {
+            if (delId == houses[i].getId()){
+                index = i;//使用index记录delId对应的房屋信息的下标i
+            }
+        }
+        if (index == -1){//说明delId在数组中不存在（没有要删除的对应的房屋）
+            return false;
+        }
+        //如果找到了要删除的房屋信息的id
+        for (int i = index;i < houseNum - 1;i++){//注意houseNum - 1 否则会报空指针异常
+            houses[i] = houses[i + 1];//将
+        }
+//        houses[houseNum - 1] = null;//等下雨下面的语句
+//        houseNum--;//少一个
+
+        //把当前存在的房屋信息的最后一个 设置null
+        houses[--houseNum] = null;
+        return true;
+    }
+
+    //findById方法，放回House对象或者null
+    public House findById(int findId){
+
+        //遍历数组
+        for (int i = 0; i < houseNum; i++) {
+            if (findId == houses[i].getId()){
+                return houses[i];
+            }
+        }
+        return null;
+    }
 }

@@ -73,6 +73,7 @@ public class Utility {
         System.out.println("请输入你的选择(Y/N): 请小心选择");
 
         while (true) {
+            //把小写的y转换成大写的Y，大写的Y还是大写的Y
             String str = readKeyBoard(1, false).toUpperCase();
             char c = str.charAt(0);
             if (c == 'Y' || c == 'N') {
