@@ -16,7 +16,7 @@ public class HouseService {
     public HouseService(int size){
         houses = new House[size];//当创建HouseService对象时，指定数组大小
         //便于测试，初始化House一个对象
-        houses[0] = new House(0001,"刘备","188","海淀区",3000,"未出租");
+        houses[0] = new House(1,"刘备","188","海淀区",3000,"未出租");
     }
 
     //list方法，返回houses

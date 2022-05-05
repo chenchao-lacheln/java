@@ -13,7 +13,7 @@ public class Houseview {
 
     private boolean loop = true;//控制显示菜单
     private char key = ' ';//接收用户选择
-    private HouseService houseService = new HouseService(2);//设置数组的大小为10
+    private HouseService houseService = new HouseService(10);//设置数组的大小为10
 
 
     public void mainMenu(){
@@ -54,12 +54,12 @@ public class Houseview {
     public void ListHouses(){
         System.out.println("==================房屋列表==================");
         System.out.println(" //编号\t\t房主\t\t电话\t\t地址\t\t月租\t\t状态(未出租/已出租)");
-        House[] list = houseService.list();//得到所有房屋信息
-        for (int i = 0; i < list.length; i++) {//这里有个雷坑
-            if (list[i] == null){//如果为空就不需要再显示
+        House[] houses = houseService.list();//得到所有房屋信息
+        for (int i = 0; i < houses.length; i++) {//这里有个雷坑
+            if (houses[i] == null){//如果为空就不需要再显示
                 break;
             }
-            System.out.println(list[i]);
+            System.out.println(houses[i]);
         }
         System.out.println("==================房屋列表显示完毕==================");
     }
@@ -160,13 +160,13 @@ public class Houseview {
         System.out.print("电话（" + house.getPhone() + "）:");
         String phone = Utility.readString(12,"");
         if (!"".equals(phone)){
-            house.setName(phone);//修改
+            house.setPhone(phone);//修改
         }
 
         System.out.print("地址（" + house.getAddress() + "）:");
         String address = Utility.readString(18,"");
         if (!"".equals(address)){
-            house.setName(address);//修改
+            house.setAddress(address);//修改
         }
 
         System.out.print("租金（" + house.getRent() + "）:");
