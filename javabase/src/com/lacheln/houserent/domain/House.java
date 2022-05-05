@@ -81,5 +81,4 @@ public class House {
                 "\t\t" + rent +
                 "\t\t\t" + state;
     }
-
 }
