@@ -18,4 +18,7 @@ class A{
     //类变量
     //类变量的访问，必须遵守相关访问权限
     public static String name = "lacheln";
+
+    //普通属性/普通成员变量/非静态成员变量/非静态属性/实例变量
+    public int nums = 10;
 }
