@@ -1,4 +1,7 @@
 package com.lacheln.single_;
+/**
+ * 演示单例模式-饿汉式
+ */
 
 public class SingleTon01 {
     public static void main(String[] args) {
@@ -7,18 +10,18 @@ public class SingleTon01 {
         //GirlFriend girlFriend1 = new GirlFriend("兰兰");
 
         //通过方法获取对象
-//        GirlFriend instance = GirlFriend.getInstance();
-//        System.out.println(instance);
-//
-//        GirlFriend instance1 = GirlFriend.getInstance();
-//        System.out.println(instance);
-//        System.out.println(instance == instance1);
+        GirlFriend instance = GirlFriend.getInstance();
+        System.out.println(instance);
+
+        GirlFriend instance1 = GirlFriend.getInstance();
+        System.out.println(instance);
+        System.out.println(instance == instance1);
 
         //演示为什么是饿汉式，
         // 使用n1这个静态变量，这个时候实际上我并没有使用到gf，
         // 但是我们在使用n1这个静态属性的时候，会导致GirlFriend这个类被加载，
         // 类加载意味着gf这个静态语句会被执行，构造器也会被调用，gf这个对象就有了
-        System.out.println(GirlFriend.n1);
+//        System.out.println(GirlFriend.n1);
 
     }
 }
