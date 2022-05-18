@@ -32,12 +32,17 @@ enum Session2 {//类
           SPRING("春天","温暖");  即 常量名（实参列表）
     3.如果有多个常量（对象），使用 ， 间隔即可
     4.如果使用enum实现枚举，要求将定义常量对象，写在前面
+    5.如果我们使用的是无参构造器，创建常量对象。可以省略（）；
      */
     SPRING("春天","温暖"),SUMMER("夏天", "炎热"),
-    AUTUMN("秋天", "凉爽"),WINTER("冬天", "寒冷");
+    AUTUMN("秋天", "凉爽"),WINTER("冬天", "寒冷"),
+    WHAT();//WHAT()是调用的无参构造器 WHAT() 可以简化为WHAT；
     private String name;
     private String desc;
 
+    private Session2(){//无参构造器
+
+    }
 
     private Session2(String name, String desc) {
         this.name = name;
