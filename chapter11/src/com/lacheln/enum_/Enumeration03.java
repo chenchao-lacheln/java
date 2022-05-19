@@ -60,7 +60,7 @@ enum Session2 {//类
 
     @Override
     public String toString() {
-        return "Session1{" +
+        return "Session2{" +
                 "name='" + name + '\'' +
                 ", desc='" + desc + '\'' +
                 '}';
