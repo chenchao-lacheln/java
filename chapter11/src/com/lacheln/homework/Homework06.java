@@ -14,6 +14,7 @@ public class Homework06 {
         tang.common();
         tang.common();
         tang.passRiver();
+        tang.passFireMount();
 
     }
 }
@@ -42,6 +43,12 @@ class Boat implements IVehicles{
 }
 
 //Plane类
+class Plane implements IVehicles {
+    @Override
+    public void work() {
+        System.out.println("过火焰山的时候，开飞机");
+    }
+}
 
 //创建交通工具类，有2个方法分别获得Horse和Boat
 //设置static静态属性，直接使用
@@ -62,6 +69,10 @@ class VehicleFactore {
 
     public static Boat getBoat(){
         return new Boat();
+    }
+    //新增Plane
+    public static Plane getPlane(){
+        return new Plane();
     }
 }
 
@@ -116,4 +127,11 @@ class Person {
         iVehicles.work();
     }
 
+    //新增过火焰山
+    public void passFireMount(){
+        if (!(iVehicles instanceof Plane)){
+            iVehicles = VehicleFactore.getPlane();
+        }
+        iVehicles.work();
+    }
 }
