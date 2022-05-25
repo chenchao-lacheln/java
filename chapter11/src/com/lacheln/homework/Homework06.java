@@ -17,6 +17,7 @@ public class Homework06 {
 
     }
 }
+//增加一个情况，唐僧过火焰山 使用飞机=>程序扩展性，之前的程序结构很好扩展
 
 //交通工具类接口IVehicles，有work方法
 interface IVehicles {
@@ -40,12 +41,23 @@ class Boat implements IVehicles{
     }
 }
 
+//Plane类
+
 //创建交通工具类，有2个方法分别获得Horse和Boat
 //设置static静态属性，直接使用
 //VehicleFactore工厂类，不想创建工厂对象，只想直接使用VehicleFactore类下的getHorse和getBoat方法,因此static比较方便
+//
 class VehicleFactore {
+    //马儿始终是同一匹马
+    private static Horse horse = new Horse();//饿汉式
+
+    //防止new VehicleFactore 进行构造器私有化
+    private VehicleFactore(){
+
+    }
     public static Horse getHorse(){
-        return new Horse();
+        //return new Horse();
+        return horse;
     }
 
     public static Boat getBoat(){
