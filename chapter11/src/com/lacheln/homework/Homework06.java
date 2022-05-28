@@ -79,6 +79,7 @@ class VehicleFactore {
 //Person类，有name和Vehicles属性，在构造器中为2个属性赋值
 class Person {
 
+    
     //私有化name和Vehicles属性
     private String name;
     private IVehicles iVehicles;
