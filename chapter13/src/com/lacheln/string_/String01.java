@@ -14,6 +14,5 @@ public class String01 {
         //一个字符2个字节（不区分字母汉字）
         //构造器多
         String name = "lacheln";
-
     }
 }
