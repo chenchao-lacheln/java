@@ -19,6 +19,5 @@ public class BigDecimal_ {
 //        System.out.println(bigDecimal.divide(bigDecimal1));//除 可能抛出异常ArithMeticException（可能除不尽）
         //如果除不尽，在调用divide方法时，指定精度即可，BigDecimal.ROUND_DOWN 会保留分子的精度
         System.out.println(bigDecimal.divide(bigDecimal1,BigDecimal.ROUND_DOWN));
-
     }
 }
