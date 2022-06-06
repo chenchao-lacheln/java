@@ -17,7 +17,7 @@ public class ArraysSortCustom {
         bubble02(arr, new Comparator() {
             @Override
             public int compare(Object o1, Object o2) {//o1,o2 就是 c.compare(arr[j],arr[j + 1])传入的arr[j],arr[j + 1]
-                int i1 = (Integer)o1;//拆箱
+                int i1 = (Integer   )o1;//拆箱
                 int i2 = (Integer)o2;
                 return i2 - i1;
             }
