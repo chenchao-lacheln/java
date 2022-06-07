@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
  * @date 2022/6/7 1:34 PM
  * @since 1.0.0
  */
-public class LocatDate_ {
+public class LocalDate_ {
     public static void main(String[] args) {
         //使用now()返回当前日期时间的对象
         LocalDateTime now = LocalDateTime.now();
