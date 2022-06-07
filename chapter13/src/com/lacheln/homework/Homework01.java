@@ -10,7 +10,7 @@ package com.lacheln.homework;
 public class Homework01 {
     public static void main(String[] args) {
         //将字符串中，指定字符进行反转，比如：abcdef  反转未 aedcbf
-        String a = "abcdef";
-
+    }
+    public static String reverse(String str,int start,int end){
     }
 }
