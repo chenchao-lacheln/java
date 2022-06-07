@@ -44,7 +44,7 @@ public class Homework02 {
         int i = email.indexOf("@");
         int j = email.indexOf(".");
         if (!(i > 0 && j > i)){
-            throw new RuntimeException("邮箱中包好@和. 并且@在.的前面");
+            throw new RuntimeException("邮箱中包含@和. 并且@在.的前面");
         }
     }
 
