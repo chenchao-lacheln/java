@@ -42,7 +42,7 @@ public class Homework01 {
             chars[i] = chars[j];
             chars[j] = temp;
         }
-        //使用chars 重先构建一个 String 返回即可
+        //使用chars 重先构建一个 String 返回即可 
         return new String(chars);
     }
 }
