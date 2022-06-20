@@ -23,8 +23,8 @@ public class CollectionInterator {
         //编译clo集合
         //1.先得到clo对应的迭代器
         Iterator iterator = clo.iterator();
-        //2.使用while循环编译
-        while (iterator.hasNext()){//判断是否还有数据
+        //2.使用while循环遍历
+        while (iterator.hasNext()){ //判断是否还有数据
             //返回下一个元素，类型是Object
             Object obj = iterator.next();
             System.out.println("obj = " + obj);
