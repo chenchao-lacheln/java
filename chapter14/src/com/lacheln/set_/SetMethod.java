@@ -12,8 +12,20 @@ import java.util.Set;
  */
 public class SetMethod {
     public static void main(String[] args) {
-        //以Set接口实现类 HashSet为例
+        //1.以Set接口实现类 HashSet为例
+        //2.set接口的实现类的对象（set接口对象），不能存放重复的元素，可以添加一个null
+        //3.set接口存放数据是无序的（即添加的顺序和取出的顺序不一致）
+        //4.取出的顺序虽然不是添加的顺序，但是他是固定的
         Set set = new HashSet();
+        set.add("marry");
+        set.add("marry");
+        set.add("lacheln");
+        set.add("jack");
+        set.add("null");
+        set.add("null");
 
+        for (int i = 0; i < 10; i++) { //
+            System.out.println("set = " + set);
+        }
     }
 }
