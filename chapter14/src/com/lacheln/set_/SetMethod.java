@@ -1,6 +1,7 @@
 package com.lacheln.set_;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -24,8 +25,25 @@ public class SetMethod {
         set.add("null");
         set.add("null");
 
-        for (int i = 0; i < 10; i++) { //
-            System.out.println("set = " + set);
+//        for (int i = 0; i < 10; i++) { //
+//            System.out.println("set = " + set);
+//        }
+        //遍历
+        //方式一：迭代器
+        System.out.println("====使用迭代器====");
+        Iterator iterator = set.iterator();
+        while (iterator.hasNext()){
+            Object obj = iterator.next();
+            System.out.println("obj = " + obj);
         }
+
+        System.out.println("====增强for循环====");
+        for (Object o : set) {
+            System.out.println(" o = " + o);
+        }
+
+        //set 接口对象，不能通过索引来获取
+
+
     }
 }
