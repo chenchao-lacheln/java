@@ -11,6 +11,7 @@ import java.util.Set;
  * @since 1.0.0
  */
 public class HashSet_ {
+    @SuppressWarnings({"all"})
     public static void main(String[] args) {
         //1.构造器走的源码 HashSet实际上市HashMap
         /*
@@ -18,6 +19,12 @@ public class HashSet_ {
                     map = new HashMap<>();
                 }
          */
-        Set set = new HashSet();
+        //2.hashSet 可以存放null，但只能存放一个null，即元素不能重复
+        Set hashSet = new HashSet();
+        hashSet.add("null");
+        hashSet.add("null");
+        hashSet.add("null");
+        System.out.println("hashSet" + hashSet);
+
     }
 }
