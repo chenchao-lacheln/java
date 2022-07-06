@@ -13,9 +13,9 @@ public class TestDemo {
     public static void main(String[] args) {
         UpgradeCost upgradeCost = new UpgradeCost();
         // 499 - (11.12 / 31) * ( 1659767956 - 1657098931)=487.92
-        double oneYearCla1 = upgradeCost.CostCalculation(499, 11.12, 31, 1657098931);
+        double oneYearCla1 = upgradeCost.CostCalculation(499, 11.12, 2592000, 1657098931);
         System.out.println("专业版新用户-原套餐为连续包月-1年 = " + oneYearCla1);
-        double oneYearCla2 = upgradeCost.CostCalculation(49.9, 11.12, 31, 1657098931);
+        double oneYearCla2 = upgradeCost.CostCalculation(49.9, 11.12, 2592000, 1657098931);
         System.out.println("专业版新用户-原套餐为连续包月-1个月 = " + oneYearCla2);
 
 
@@ -29,7 +29,7 @@ class UpgradeCost {
     //价格 原订单金额 天数 下次收费时间 升级时间
     private double price;
     private double OriginalOrderAmount;
-    private int day = 31;
+    private int day = 2592000; //31天
     private long nextChargeTime;
 
     public UpgradeCost() {
@@ -80,7 +80,7 @@ class UpgradeCost {
     }
 
     public void TimeChange(Long l){
-        //转换格式
+        //time format conversion
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String strTime = simpleDateFormat.format(l);
         System.out.println(strTime);
