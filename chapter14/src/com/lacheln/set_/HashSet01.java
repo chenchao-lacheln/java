@@ -9,6 +9,5 @@ package com.lacheln.set_;
  */
 public class HashSet01 {
     public static void main(String[] args) {
-
     }
 }
