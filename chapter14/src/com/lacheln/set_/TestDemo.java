@@ -20,7 +20,7 @@ public class TestDemo {
         //选择的套餐价格 收取的连续订阅价格 下次收费时间
         System.out.println("专业版新用户-原套餐为连续包月-1年 = " + money.isMounthPay("499","11.12","1659767956"));
         System.out.println("专业版新用户-原套餐为连续包月-1个月 = " + money.isMounthPay("49.9","11.12","1659767956"));
-        Date time = Tool.upgradeTime31();
+        Date time = Tool.getCurrentTime31();
         //时间戳转化时间
         tool.stampToTime(time);
 
@@ -37,11 +37,11 @@ public class TestDemo {
 //升级费用计算测试
 class Tool {
     //update time 获取当前时间
-    public final static long upgradeTime(){
+    public final static long getCurrentTime(){
         return System.currentTimeMillis() / 1000 ;
     }
     //update time 获取当前时间 + 31天
-    public final static Date upgradeTime31(){
+    public final static Date getCurrentTime31(){
         //获取系统当前时间
         Calendar instance = Calendar.getInstance();
         //+31天
@@ -72,16 +72,16 @@ class Tool {
 //升级费用计算
 class Money {
     //原套餐为连续包月
-    public BigDecimal isMounthPay(String price,String originalOrderAmount,String nextChargeTime){
-        BigDecimal a = new BigDecimal(price);
+    public BigDecimal isMounthPay(String selectPrice,String originalPrice,String nextChargeTime){
+        BigDecimal a = new BigDecimal(selectPrice);
         //收费的连续订阅金额
-        BigDecimal b = new BigDecimal(originalOrderAmount);
+        BigDecimal b = new BigDecimal(originalPrice);
         //31天
         BigDecimal day1 = new BigDecimal("2592000"); //2592000
         //下一次收费时间
         BigDecimal c = new BigDecimal("1659767956");
         //升级时间
-        BigDecimal upgradeTime = new BigDecimal(Tool.upgradeTime());
+        BigDecimal upgradeTime = new BigDecimal(Tool.getCurrentTime());
 
         //金额计算
         //收费的连续订阅金额/31天
