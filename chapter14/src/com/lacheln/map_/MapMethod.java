@@ -10,6 +10,7 @@ import java.util.Map;
  * @date 2022/7/10 10:17
  * @since 1.0.0
  */
+@SuppressWarnings({"all"})
 public class MapMethod {
     public static void main(String[] args) {
         Map map = new HashMap();
