@@ -22,10 +22,10 @@ public class TestMain {
         long currentTime = Tools.getCurrentTime();
         System.out.println("currentTime = " + currentTime);
 
-        //时间戳转化时间
+        //stampToTime
         tools.stampToTime(time31);
 
-        //格式化
+        //Formate
         try {
             tools.dateToStamp("2022-08-08 19:33:05");
         } catch (ParseException e) {
