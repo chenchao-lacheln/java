@@ -37,6 +37,37 @@ public class Moneys {
     }
 
     //原套餐为非连续包月
-    public void isNotMounthPay(){
+    /*
+    1.剩余有效期>1年 :价格为1年高性能版价格 -  ∑【订单价格/订单有效日期 *（订单在高性能版本订单生效时间范围内日期）】；
+    2.剩余有效期>1月，1个月高性能版价格-∑【订单价格/订单有效日期 *（订单在高性能版本订单生效时间范围内日期）】
+        订单价格:所有订单总额
+        订单有效日期：到期时间（终单到期时间） - 支付时间 （首单支付时间)
+        订单在高性能版本订单生效时间范围内日期： 高性能的生效时间
+            高性能的生效时间：1年的时间
+
+     */
+    public BigDecimal isNotMounthPayMore1(String selectPrice, String originalPrice, String nextChargeTime){
+        BigDecimal bigDecimal1 = new BigDecimal(selectPrice);
+        BigDecimal bigDecimal2 = new BigDecimal(originalPrice);
+        BigDecimal bigDecimal3 = new BigDecimal(nextChargeTime);
+        return bigDecimal1;
+    }
+
+    /*
+    1.剩余有效期<1年，价格为1年高性能版价格-剩余价值，有效期为升级日+1年
+    2.剩余有效期<1月，价格为选择价格-剩余价值，有效期为升级日+1个月
+        剩余价值 = 实付金额/总有效期*剩余时间
+            实付金额：即所有订单总额
+            总有效期 = 到期时间（终单到期时间） - 支付时间 （首单支付时间)
+            剩余时间 = 到期时间-当前时间（当前北京时间）
+    //传入参数：选择价格 selectPrice 实付金额 originalPrice 到期时间nextChargeTime 支付时间paymentTime 当前时间 Tools.getCurrentTime()
+     */
+    public BigDecimal isNotMounthPayLess1(String selectPrice, String originalPrice, String nextChargeTime,String paymentTime){
+        BigDecimal bigDecimal1 = new BigDecimal(selectPrice);
+        BigDecimal bigDecimal2 = new BigDecimal(originalPrice);
+        BigDecimal bigDecimal3 = new BigDecimal(nextChargeTime);
+        BigDecimal bigDecimal4 = new BigDecimal(paymentTime);
+        BigDecimal bigDecimal5 = new BigDecimal(Tools.getCurrentTime());
+        return bigDecimal1.subtract(bigDecimal2.divide(bigDecimal3.subtract(bigDecimal4)).multiply(bigDecimal3.subtract(bigDecimal5)));
     }
 }
