@@ -64,9 +64,6 @@ public class Moneys {
         BigDecimal subtract365 = bigDecimal1.subtract(bigDecimal2.divide(subtract, 10, BigDecimal.ROUND_DOWN).multiply(bigDecimal365));
         BigDecimal subtract31 = bigDecimal1.subtract(bigDecimal2.divide(subtract, 10, BigDecimal.ROUND_DOWN).multiply(bigDecimal31));
 
-
-
-
         return bigDecimal1.intValue() == 499 ? subtract365 : subtract31;
 }
 
@@ -94,6 +91,42 @@ public class Moneys {
         BigDecimal bigDecimal = bigDecimal2.divide(subtract, 10, BigDecimal.ROUND_DOWN).multiply(subtract1);
         //总价格
         return bigDecimal1.subtract(bigDecimal);
+    }
 
+    //老用户 剩余有效期大于1年
+    public BigDecimal regularUsersD1(String selectPrice, String originalPrice, String nextChargeTime,String paymentTime) {
+        BigDecimal bigDecimal1 = new BigDecimal(selectPrice);
+        BigDecimal bigDecimal2 = new BigDecimal(originalPrice);
+        BigDecimal bigDecimal3 = new BigDecimal(nextChargeTime);
+        BigDecimal bigDecimal4 = new BigDecimal(paymentTime);
+        //订单有效日期
+        BigDecimal subtract = bigDecimal3.subtract(bigDecimal4);
+        //订单价格/订单有效日期
+        BigDecimal divide = bigDecimal2.divide(subtract, 10, BigDecimal.ROUND_DOWN);
+        //订单在高性能版本订单生效时间范围内日期
+        BigDecimal bigDecimal31 = new BigDecimal("2678365"); //2678365
+        BigDecimal bigDecimal365 = new BigDecimal("31535960"); //31535960
+        //总价格:价格为1年高性能版价格 -  ∑【订单价格/订单有效日期 *（订单在高性能版本订单生效时间范围内日期）】
+        BigDecimal subtract365 = bigDecimal1.subtract(divide.multiply(bigDecimal365));
+        BigDecimal subtract31 = bigDecimal1.subtract(divide.multiply(bigDecimal31));
+
+        return bigDecimal1.intValue() == 499 ? subtract365 : subtract31;
+    }
+    //老用户 剩余有效期小于1年
+    public BigDecimal regularUsersX1(String selectPrice, String originalPrice, String nextChargeTime,String paymentTime) {
+        BigDecimal bigDecimal1 = new BigDecimal(selectPrice);
+        BigDecimal bigDecimal2 = new BigDecimal(originalPrice);
+        BigDecimal bigDecimal3 = new BigDecimal(nextChargeTime);
+        BigDecimal bigDecimal4 = new BigDecimal(paymentTime);
+        BigDecimal bigDecimal5 = new BigDecimal(Tools.getCurrentTime());
+
+        //总有效期 = 到期时间（终单到期时间） - 支付时间 （首单支付时间)
+        BigDecimal subtract = bigDecimal3.subtract(bigDecimal4);
+        //剩余时间 = 到期时间-当前时间（当前北京时间）
+        BigDecimal subtract1 = bigDecimal3.subtract(bigDecimal5);
+        //剩余价值 = 实付金额/总有效期*剩余时间
+        BigDecimal bigDecimal = bigDecimal2.divide(subtract, 10, BigDecimal.ROUND_DOWN).multiply(subtract1);
+        //总价格
+        return bigDecimal1.subtract(bigDecimal);
     }
 }
