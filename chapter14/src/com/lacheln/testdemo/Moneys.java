@@ -1,6 +1,7 @@
 package com.lacheln.testdemo;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * Money
@@ -99,9 +100,9 @@ public class Moneys {
         BigDecimal bigDecimal2 = new BigDecimal(originalPrice);
         BigDecimal bigDecimal3 = new BigDecimal(nextChargeTime);
         BigDecimal bigDecimal4 = new BigDecimal(paymentTime);
-        //订单有效日期
+        //订单有效日期（套餐有效期）
         BigDecimal subtract = bigDecimal3.subtract(bigDecimal4);
-        //订单价格/订单有效日期
+        //订单价格/订单有效日期（套餐每秒平均价格）
         BigDecimal divide = bigDecimal2.divide(subtract, 10, BigDecimal.ROUND_DOWN);
         //订单在高性能版本订单生效时间范围内日期
         BigDecimal bigDecimal31 = new BigDecimal("2678365"); //2678365
@@ -109,6 +110,73 @@ public class Moneys {
         //总价格:价格为1年高性能版价格 -  ∑【订单价格/订单有效日期 *（订单在高性能版本订单生效时间范围内日期）】
         BigDecimal subtract365 = bigDecimal1.subtract(divide.multiply(bigDecimal365));
         BigDecimal subtract31 = bigDecimal1.subtract(divide.multiply(bigDecimal31));
+
+        return bigDecimal1.intValue() == 499 ? subtract365 : subtract31;
+    }
+
+    //老用户 剩余有效期大于1年
+    public BigDecimal regularUsersD1_three(String selectPrice, String o1,String o2,
+                                           String start1, String end1,String start2, String end2) {
+        BigDecimal bigDecimal1 = new BigDecimal(selectPrice);
+        BigDecimal bigDecimal2 = new BigDecimal(start1);
+        BigDecimal bigDecimal3 = new BigDecimal(end1);
+        BigDecimal bigDecimal5 = new BigDecimal(start2);
+        BigDecimal bigDecimal6 = new BigDecimal(end2);
+
+        //套餐1原订单价格
+        BigDecimal bigDecimal9 = new BigDecimal(o1);
+        System.out.println("套餐1原订单价格 = " + bigDecimal9);
+        BigDecimal bigDecimal10 = new BigDecimal(o2);
+        System.out.println("套餐2原订单价格 = " + bigDecimal10);
+
+
+        //套餐1 - 订单有效日期（套餐有效期）
+        BigDecimal subtract1 = bigDecimal3.subtract(bigDecimal2);
+        System.out.println("套餐1有效期 = " + bigDecimal3 + " - " + bigDecimal2 + " = " + subtract1);
+        //套餐2 - 订单有效日期（套餐有效期）
+        BigDecimal subtract2 = bigDecimal6.subtract(bigDecimal5);
+        System.out.println("套餐2有效期 = " + bigDecimal6 + " - " + bigDecimal5 + " = " + subtract2);
+
+
+        //套餐1 - 订单价格/订单有效日期（套餐每秒平均价格）
+        BigDecimal divide1 = bigDecimal9.divide(subtract1, 10, BigDecimal.ROUND_DOWN);
+        System.out.println("套餐1每秒平均价格 = " + bigDecimal9 + "/" + subtract1 + "=" + divide1);
+        //套餐2 - 订单价格/订单有效日期（套餐每秒平均价格）
+        BigDecimal divide2 = bigDecimal10.divide(subtract2, 10, BigDecimal.ROUND_DOWN);
+        System.out.println("套餐2每秒平均价格 = " + bigDecimal10 + "/" + subtract2 + "=" + divide2);
+
+
+        //当前时间
+        long currentTime = Tools.getCurrentTime();
+        BigDecimal current = BigDecimal.valueOf(currentTime);
+        System.out.println("当前时间戳 = " + current);
+        //31
+        BigDecimal bigDecimal31 = new BigDecimal("2678365"); //2678365
+//        System.out.println(" 31天时间戳= " + bigDecimal31);
+
+        //当前时间+365
+        BigDecimal bigDecimal365 = new BigDecimal("31535960"); //31535960
+        BigDecimal add365 = current.add(bigDecimal365);
+        System.out.println("当前时间+365 =" + add365);
+//        System.out.println("当前时间+365 = " + add365);
+
+        //套餐1在高性能版本有效期内价格
+        BigDecimal gt1 = bigDecimal3.subtract(current);
+        System.out.println(bigDecimal3 + "-" + current + " = " + gt1);
+        BigDecimal price1 = gt1.multiply(divide1);
+        System.out.println("套餐1在高性能版本有效期内价格:" + gt1 + " * " + divide1 + " = " + price1);
+        System.out.println("====================");
+        //套餐2在高性能版本有效期内价格
+        BigDecimal gt2 = add365.subtract(bigDecimal3);
+        System.out.println(add365 + "-" + bigDecimal3 + " = " + gt2);
+        BigDecimal price2 = gt2.multiply(divide2);
+        System.out.println("套餐2在高性能版本有效期内价格:"+ gt2 + " * " + divide2 + " = " + price2);
+//        BigDecimal bigDecimal31 = new BigDecimal("2678365"); //2678365
+//        BigDecimal bigDecimal365 = new BigDecimal("31535960"); //31535960
+        //总价格:价格为1年高性能版价格 -  ∑【订单价格/订单有效日期 *（订单在高性能版本订单生效时间范围内日期）】
+        BigDecimal subtract365 = bigDecimal1.subtract(price1).subtract(price2);
+        BigDecimal subtract31 = bigDecimal1.subtract(divide2.multiply(bigDecimal31));
+
 
         return bigDecimal1.intValue() == 499 ? subtract365 : subtract31;
     }
