@@ -114,6 +114,40 @@ public class Moneys {
         return bigDecimal1.intValue() == 499 ? subtract365 : subtract31;
     }
 
+    //老用户 长期版 升级的套餐的有效期  在套餐1内
+    public BigDecimal regularUsersD1_one(String selectPrice, String o1, String start1, String end1) {
+        //31天
+        BigDecimal bigDecimal31 = new BigDecimal("2678365"); //2678365
+        //365天
+        BigDecimal bigDecimal365 = new BigDecimal("31535960"); //31535960
+//        System.out.println("365天时间戳值 = " + bigDecimal365);
+        BigDecimal bigDecimal1 = new BigDecimal(selectPrice);
+        BigDecimal bigDecimal2 = new BigDecimal(o1);
+        BigDecimal bigDecimal3 = new BigDecimal(start1);
+        BigDecimal bigDecimal4 = new BigDecimal(end1);
+
+        //当前时间戳
+        long currentTime = Tools.getCurrentTime();
+        BigDecimal current = BigDecimal.valueOf(currentTime);
+
+        //套餐1有效期
+        BigDecimal date1 = bigDecimal4.subtract(bigDecimal3);
+//        System.out.println("套餐1有效期 = " + bigDecimal4 + " - " + bigDecimal3 + " = " + date1);
+        //套餐1每秒价格
+        BigDecimal price1 = bigDecimal2.divide(date1,10,BigDecimal.ROUND_DOWN);
+//        System.out.println("套餐1每秒价格 = " + bigDecimal2 + " / " + date1 + " = " + price1);
+
+        //套餐1在高性能版本有效期内价格
+        //升级套餐在原套餐内
+//        BigDecimal result365 = bigDecimal1.subtract(price1.multiply(bigDecimal365));
+        //升级套餐部分在原套餐内
+        BigDecimal result365 = bigDecimal1.subtract(price1.multiply(bigDecimal4.subtract(current)));
+//        System.out.println(bigDecimal1 + " - " + price1 + " * " + bigDecimal365 + " = " + result365);
+        BigDecimal result31 = bigDecimal1.subtract(price1.multiply(bigDecimal31));
+//        System.out.println(bigDecimal1 + " - " + price1 + " * " + bigDecimal31 + " = " + result31);
+        return bigDecimal1.intValue() == 499 ? result365 : result31;
+    }
+
     //老用户 剩余有效期大于1年
     public BigDecimal regularUsersD1_three(String selectPrice, String o1,String o2,
                                            String start1, String end1,String start2, String end2) {
@@ -167,15 +201,15 @@ public class Moneys {
         System.out.println("套餐1在高性能版本有效期内价格:" + gt1 + " * " + divide1 + " = " + price1);
         System.out.println("====================");
         //套餐2在高性能版本有效期内价格
-        BigDecimal gt2 = add365.subtract(bigDecimal3);
-        System.out.println(add365 + "-" + bigDecimal3 + " = " + gt2);
+        BigDecimal gt2 = add365.subtract(bigDecimal5);
+        System.out.println(add365 + "-" + bigDecimal5 + " = " + gt2);
         BigDecimal price2 = gt2.multiply(divide2);
         System.out.println("套餐2在高性能版本有效期内价格:"+ gt2 + " * " + divide2 + " = " + price2);
 //        BigDecimal bigDecimal31 = new BigDecimal("2678365"); //2678365
 //        BigDecimal bigDecimal365 = new BigDecimal("31535960"); //31535960
         //总价格:价格为1年高性能版价格 -  ∑【订单价格/订单有效日期 *（订单在高性能版本订单生效时间范围内日期）】
         BigDecimal subtract365 = bigDecimal1.subtract(price1).subtract(price2);
-        BigDecimal subtract31 = bigDecimal1.subtract(divide2.multiply(bigDecimal31));
+        BigDecimal subtract31 = bigDecimal1.subtract(divide1.multiply(bigDecimal31));
 
 
         return bigDecimal1.intValue() == 499 ? subtract365 : subtract31;

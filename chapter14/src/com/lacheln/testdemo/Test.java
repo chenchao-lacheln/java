@@ -26,8 +26,14 @@ public class Test {
 //        System.out.println("=============老用户 大于1年=============");
 //        System.out.println("老用户-原套餐：先购买短期版，再购买长期版 剩余有效期>1年 升级1年= " + money.regularUsersD1("499", "595", "1995840742", "1617149542"));
 //        System.out.println("老用户-原套餐：先购买短期版，再购买长期版 = 剩余有效期>1年 升级1个月" + money.regularUsersD1("49.9", "595", "1995840742", "1617149542"));
-        System.out.println("老用户-原套餐为 正常购买专业版 剩余有效期>1年 升级1年= " + money.regularUsersD1_three("499","118","99","1648691919","1680227919","1680227919","1717552719"));
-        System.out.println("老用户-原套餐为 正常购买专业版 剩余有效期>1年 升级1个月= " + money.regularUsersD1_three("49.9","118","99","1648691919","1680227919","1680227919","1717552719"));
+//        System.out.println("老用户-原套餐为 正常购买专业版 剩余有效期>1年 升级1年= " + money.regularUsersD1_three("499","118","99","1648691919","1680227919","1685930319","1717552719"));
+//        System.out.println("老用户-原套餐为 正常购买专业版 剩余有效期>1年 升级1个月= " + money.regularUsersD1_three("49.9","118","99","1648691919","1680227919","1685930319","1717552719"));
+        //System.out.println("老用户-原套餐为 先购买长期版，再购买短期版 剩余有效期>1年 升级1年= " + money.regularUsersD1_one("499","435","1617343903","1932876703"));
+        //System.out.println("老用户-原套餐为 先购买长期版，再购买短期版 剩余有效期>1年 升级1个月= " + money.regularUsersD1_one("49.9","435","1617343903","1932876703"));
+        //System.out.println("老用户-原套餐为 正常购买1比专业版+有效期有活动赠送的有效期 剩余有效期>1年 升级1年= " + money.regularUsersD1_one("499","181","1619855698","1688191196"));
+        //System.out.println("老用户-原套餐为 正常购买1比专业版+有效期有活动赠送的有效期 剩余有效期>1年 升级1个月= " + money.regularUsersD1_one("49.9","181","1619855698","1688191196"));
+        System.out.println("老用户-原套餐为 手动改订单的专业版 剩余有效期>1年 升级1年= " + money.regularUsersD1_one("499","118","1643186311","1674722311"));
+        System.out.println("老用户-原套餐为 手动改订单的专业版 剩余有效期>1年 升级1个月= " + money.regularUsersD1_one("49.9","118","1643186311","1674722311"));
 
 //        System.out.println("=============老用户 小于1年=============");
 //        System.out.println("老用户-原套餐为 正常购买专业版 剩余有效期<1年 升级1年= " + money.regularUsersX1("499", "108", "1659323816", "1627787816"));
@@ -38,8 +44,9 @@ public class Test {
 
 //        Date time31 = tools.getCurrentTime31();
 //
-//        long currentTime = Tools.getCurrentTime();
-//        System.out.println("currentTime = " + currentTime);
+//        System.out.println("currentTime = " + Tools.getCurrentTime());
+//        Date currentTime365 = Tools.getCurrentTime365();
+//        System.out.println("currentTime365 = " + currentTime365);
 //
 //        //stampToTime
 //        tools.stampToTime(time31);
