@@ -1,5 +1,7 @@
 package com.lacheln.customgeneric;
 
+import java.util.Arrays;
+
 /**
  * CustomGeneric_
  *
@@ -9,7 +11,14 @@ package com.lacheln.customgeneric;
  */
 public class CustomGeneric_ {
     public static void main(String[] args) {
-
+        //T = Double，R = String, M = Integer
+        Tiger<Double, String, Integer> g = new Tiger<>("jhon");
+        g.setT(10.9); //ok
+        //g.setT("yy"); //错误 类型不对
+        System.out.println(g);
+        Tiger g2 = new Tiger("john~~"); //ok  T = Object，R = Object, M = Object
+        g2.setT("yy"); //ok ,因为 T = Object "yy" = String 是Object的子类
+        System.out.println("g2=" + g2);
     }
 }
 //1.Tiger 后面泛型， 我们把 Tiger 就称之为 自定义泛型
@@ -30,8 +39,10 @@ class Tiger <T, R, M>{
     //可以定义
     T[] ts;
 
-    public Tiger(String name, R r, M m, T t) { //构造器使用泛型
+    public Tiger(String name){
         this.name = name;
+    }
+    public Tiger(R r, M m, T t) { //构造器使用泛型
         this.r = r;
         this.m = m;
         this.t = t;
@@ -77,5 +88,16 @@ class Tiger <T, R, M>{
 
     public void setT(T t) {
         this.t = t;
+    }
+
+    @Override
+    public String toString() {
+        return "Tiger{" +
+                "name='" + name + '\'' +
+                ", r=" + r +
+                ", m=" + m +
+                ", t=" + t +
+                ", ts=" + Arrays.toString(ts) +
+                '}';
     }
 }
