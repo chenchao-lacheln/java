@@ -16,6 +16,7 @@ public class Generic02 {
         //1.ArrayList<Dog>表示存放到list集合中的元素是 Dog类型
         //2.如果编译器发现添加的类型，不满足要求，就会报错
         //3.在遍历的时候，可以直接取出Dog类型，而不是Object类型
+        //4.public class ArrayList<E> {} E称为泛型 Dog -->> E
         ArrayList<Dog> list = new ArrayList<Dog>();
         list.add(new Dog("来福",10));
         list.add(new Dog("旺财",1));
