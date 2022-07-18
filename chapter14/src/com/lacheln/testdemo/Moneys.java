@@ -138,10 +138,10 @@ public class Moneys {
 //        System.out.println("套餐1每秒价格 = " + bigDecimal2 + " / " + date1 + " = " + price1);
 
         //套餐1在高性能版本有效期内价格
-        //升级套餐在原套餐内
-//        BigDecimal result365 = bigDecimal1.subtract(price1.multiply(bigDecimal365));
-        //升级套餐部分在原套餐内
-        BigDecimal result365 = bigDecimal1.subtract(price1.multiply(bigDecimal4.subtract(current)));
+        //365年套餐 升级套餐在原套餐内
+        BigDecimal result365 = bigDecimal1.subtract(price1.multiply(bigDecimal365));
+        //365年套餐  升级套餐部分在原套餐内
+        //BigDecimal result365 = bigDecimal1.subtract(price1.multiply(bigDecimal4.subtract(current)));
 //        System.out.println(bigDecimal1 + " - " + price1 + " * " + bigDecimal365 + " = " + result365);
         BigDecimal result31 = bigDecimal1.subtract(price1.multiply(bigDecimal31));
 //        System.out.println(bigDecimal1 + " - " + price1 + " * " + bigDecimal31 + " = " + result31);
@@ -224,10 +224,46 @@ public class Moneys {
 
         //总有效期 = 到期时间（终单到期时间） - 支付时间 （首单支付时间)
         BigDecimal subtract = bigDecimal3.subtract(bigDecimal4);
-        //剩余时间 = 到期时间-当前时间（当前北京时间）
-        BigDecimal subtract1 = bigDecimal3.subtract(bigDecimal5);
+
+
+        //剩余时间 = 到期时间-当前时间（当前北京时间）--套餐结束时间 大于 nextChargeTime
+        //BigDecimal subtract1 = bigDecimal3.subtract(bigDecimal5);
+        //剩余时间 = 到期时间-当前时间（当前北京时间）--套餐结束时间 小于 nextChargeTime
+        BigDecimal subtract1 = new BigDecimal("2678365"); //2678365
+
+
+
         //剩余价值 = 实付金额/总有效期*剩余时间
         BigDecimal bigDecimal = bigDecimal2.divide(subtract, 10, BigDecimal.ROUND_DOWN).multiply(subtract1);
+
+        //总价格
+        return bigDecimal1.subtract(bigDecimal);
+    }
+    //老用户 剩余有效期小于1年
+    public BigDecimal regular3652UsersX1(String selectPrice, String originalPrice, String nextChargeTime) {
+        BigDecimal bigDecimal1 = new BigDecimal(selectPrice);
+        BigDecimal bigDecimal2 = new BigDecimal(originalPrice);
+        BigDecimal bigDecimal3 = new BigDecimal(nextChargeTime);
+//        BigDecimal bigDecimal4 = new BigDecimal(paymentTime);
+        BigDecimal bigDecimal5 = new BigDecimal(Tools.getCurrentTime());
+
+        //总有效期 = 到期时间（终单到期时间） - 支付时间 （首单支付时间)
+//        BigDecimal subtract = bigDecimal3.subtract(bigDecimal4);
+
+
+        //长期版剩余天数 = 到期时间-当前时间（当前北京时间）--套餐结束时间 大于 nextChargeTime
+        BigDecimal subtract1 = bigDecimal3.subtract(bigDecimal5);
+        //长期版剩余天数 = 到期时间-当前时间（当前北京时间）--套餐结束时间 小于 nextChargeTime
+
+        //3652
+        BigDecimal bigDecimal3652 = new BigDecimal("315532757"); //315532757
+
+
+
+        //剩余价值 = 实付金额/总有效期*剩余时间
+        //长期版剩余价值=长期版剩余天数 *（长期版实付价钱/3652）
+        BigDecimal bigDecimal = subtract1.multiply(bigDecimal2.divide(bigDecimal3652,10,BigDecimal.ROUND_DOWN));
+
         //总价格
         return bigDecimal1.subtract(bigDecimal);
     }

@@ -32,28 +32,39 @@ public class Test {
         //System.out.println("老用户-原套餐为 先购买长期版，再购买短期版 剩余有效期>1年 升级1个月= " + money.regularUsersD1_one("49.9","435","1617343903","1932876703"));
         //System.out.println("老用户-原套餐为 正常购买1比专业版+有效期有活动赠送的有效期 剩余有效期>1年 升级1年= " + money.regularUsersD1_one("499","181","1619855698","1688191196"));
         //System.out.println("老用户-原套餐为 正常购买1比专业版+有效期有活动赠送的有效期 剩余有效期>1年 升级1个月= " + money.regularUsersD1_one("49.9","181","1619855698","1688191196"));
-        System.out.println("老用户-原套餐为 手动改订单的专业版 剩余有效期>1年 升级1年= " + money.regularUsersD1_one("499","118","1643186311","1674722311"));
-        System.out.println("老用户-原套餐为 手动改订单的专业版 剩余有效期>1年 升级1个月= " + money.regularUsersD1_one("49.9","118","1643186311","1674722311"));
-
+        //System.out.println("老用户-原套餐为 手动改订单的专业版 剩余有效期>1年 升级1年= " + money.regularUsersD1_one("499","118","1643186311","1674722311"));
+        //System.out.println("老用户-原套餐为 手动改订单的专业版 剩余有效期>1年 升级1个月= " + money.regularUsersD1_one("49.9","118","1643186311","1674722311"));
+        //System.out.println("老用户-原套餐为 手提取码激活专业版套餐 剩余有效期>1年 升级1年= " + money.regularUsersD1_one("499","202","1633663349","1696735349"));
+        //System.out.println("老用户-原套餐为 提取码激活专业版套餐 剩余有效期>1年 升级1个月= " + money.regularUsersD1_one("49.9","202","1633663349","1696735349"));
+        //System.out.println("老用户-原套餐为 提取码激活专业版套餐 剩余有效期>1年 升级1年= " + money.regularUsersD1_one("499","196","1620727085","1715421485"));
+        //System.out.println("老用户-原套餐为 提取码激活专业版套餐 剩余有效期>1年 升级1个月= " + money.regularUsersD1_one("49.9","196","1620727085","1715421485"));
 //        System.out.println("=============老用户 小于1年=============");
 //        System.out.println("老用户-原套餐为 正常购买专业版 剩余有效期<1年 升级1年= " + money.regularUsersX1("499", "108", "1659323816", "1627787816"));
 //        System.out.println("老用户-原套餐为 正常购买专业版 剩余有效期<1年 升级1个月= " + money.regularUsersX1("49.9", "108", "1659323816", "1627787816"));
+        System.out.println("老用户-原套餐为 手动改订单的专业版 剩余有效期<1年 升级1年= " + money.regularUsersX1("499", "81.48", "1676628560", "1658141914"));
+        System.out.println("老用户-原套餐为 手动改订单的专业版 剩余有效期<1年 升级1个月= " + money.regularUsersX1("49.9", "81.48", "1676628560", "1658141914"));
 //        System.out.println("老用户-原套餐：正常购买1比专业版+有效期有活动赠送的有效期 " + money.regularUsersX1("499", "108", "1659323816", "1619839033"));
 //        System.out.println("老用户-原套餐：正常购买1比专业版+有效期有活动赠送的有效期 " + money.regularUsersX1("49.9", "108", "1659323816", "1619839033"));
+        //System.out.println("老用户-原套餐为 提取码激活专业版套餐 剩余有效期<1年 升级1年= " + money.regularUsersX1("499", "108", "1661563975", "1630027975"));
+        //System.out.println("老用户-原套餐为 提取码激活专业版套餐 剩余有效期<1年 升级1个月= " + money.regularUsersX1("49.9", "108", "1661563975", "1630027975"));
+        //System.out.println("老用户-原套餐为 正常购买专业版+优惠券 剩余有效期<1年 升级1年= " + money.regularUsersX1("499", "344", "1659574244", "1628038244"));
+        //System.out.println("老用户-原套餐为 正常购买专业版+优惠券 剩余有效期<1年 升级1个月= " + money.regularUsersX1("49.9", "344", "1659574244", "1628038244"));
+        //System.out.println("老用户-原套餐为 长期版 剩余有效期<1年 升级1年= " + money.regular3652UsersX1("499", "652", "1680843405"));
+        //System.out.println("老用户-原套餐为 长期版 剩余有效期<1年 升级1个月= " + money.regular3652UsersX1("49.9", "652", "1680843405"));
 
 
 //        Date time31 = tools.getCurrentTime31();
 //
 //        System.out.println("currentTime = " + Tools.getCurrentTime());
-//        Date currentTime365 = Tools.getCurrentTime365();
-//        System.out.println("currentTime365 = " + currentTime365);
+//        Date currentTime3652 = Tools.getCurrentTime3652();
+//        System.out.println("currentTime3652 = " + currentTime3652);
 //
 //        //stampToTime
-//        tools.stampToTime(time31);
+//        tools.stampToTime(currentTime3652);
 //
 //        //Formate
 //        try {
-//            tools.dateToStamp("2023-07-12 11:32:57");
+//            tools.dateToStamp("2032-07-17 16:50:02");
 //        } catch (ParseException e) {
 //            e.printStackTrace();
 //        }

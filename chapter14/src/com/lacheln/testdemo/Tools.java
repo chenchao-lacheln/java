@@ -23,7 +23,7 @@ public class Tools {
         //获取系统当前时间
         Calendar instance = Calendar.getInstance();
         //+31天
-        instance.add(Calendar.DATE,365);
+        instance.add(Calendar.DATE,31);
         //得到最终时间
         Date time = instance.getTime();
         return time;
@@ -34,6 +34,16 @@ public class Tools {
         Calendar instance = Calendar.getInstance();
         //+31天
         instance.add(Calendar.DATE,365);
+        //得到最终时间
+        Date time = instance.getTime();
+        return time;
+    }
+    //update time 获取当前时间 + 3652天
+    public final static Date getCurrentTime3652(){
+        //获取系统当前时间
+        Calendar instance = Calendar.getInstance();
+        //+31天
+        instance.add(Calendar.DATE,3652);
         //得到最终时间
         Date time = instance.getTime();
         return time;
