@@ -2,6 +2,8 @@ package com.lacheln.tankgame2;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * MyPanel
@@ -10,11 +12,13 @@ import java.awt.*;
  * @date 2022/7/18 22:33
  * @since 1.0.0
  */
-public class MyPanel extends JPanel {
+//为了监听键盘时间，实现接口KeyListener
+public class MyPanel extends JPanel implements KeyListener {
     //定义我的坦克
     Hero hero = null;
     public MyPanel(){
         hero = new Hero(100,100);//初始化自己的坦克
+        //hero.setSpeed(5);//设置坦克的移动速度
     }
 
     @Override
@@ -23,7 +27,7 @@ public class MyPanel extends JPanel {
         g.fillRect(0,0,1000,750);//填充矩形，默认是黑色
 
         //画坦克-封装方法
-        drawTank(hero.getX(),hero.getY(),g,3,1);
+        drawTank(hero.getX(),hero.getY(),g,hero.getDirect(),1);
     }
 
     //编写方法，画出坦克
@@ -48,6 +52,7 @@ public class MyPanel extends JPanel {
         }
         //根据坦克方向，来绘制对应形状坦克
         //direct表示方向（0 向上 1 向右 2 向下 3 向左）
+        //
         switch (direct){
             case 0: //表示向上
                 g.fill3DRect(x,y,10,60,false); //画出坦克左边轮子
@@ -80,5 +85,37 @@ public class MyPanel extends JPanel {
             default:
                 System.out.println("暂时没有处理");
         }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    //处理wdsa 键按下的情况
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_W){ //按下 W键
+            hero.setDirect(0);
+            //修改坦克的坐标 y -= 1
+            hero.moveUp();
+        }else if (e.getKeyCode() == KeyEvent.VK_D){ //按下 D键
+            hero.setDirect(1);
+            hero.moveRight();
+        }else if (e.getKeyCode() == KeyEvent.VK_S){ //按下 S键
+            hero.setDirect(2);
+            hero.moveDown();
+        }else if (e.getKeyCode() == KeyEvent.VK_A){ //按下 A键
+            hero.setDirect(3);
+            hero.moveLeft();
+        }
+
+        //重绘面板
+        this.repaint();
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }

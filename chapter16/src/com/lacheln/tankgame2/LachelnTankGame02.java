@@ -20,6 +20,7 @@ public class LachelnTankGame02 extends JFrame {
         mp = new MyPanel();
         this.add(mp);//把面板（就是游戏的绘图区域）
         this.setSize(1000,750);//设置大小
+        this.addKeyListener(mp); //让JFrame 监听 mp的键盘事件
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//关闭
         this.setVisible(true);//显示
     }
