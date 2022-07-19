@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Vector;
 
 /**
  * MyPanel
@@ -16,9 +17,18 @@ import java.awt.event.KeyListener;
 public class MyPanel extends JPanel implements KeyListener {
     //定义我的坦克
     Hero hero = null;
+    //定义敌人的坦克，放入到Vector中
+    Vector<EnemyTank> enemyTanks = new Vector<>();
+    int enemyTankSize = 3;
     public MyPanel(){
         hero = new Hero(100,100);//初始化自己的坦克
         //hero.setSpeed(5);//设置坦克的移动速度
+        //初始化敌人坦克
+        for (int i = 0;i < enemyTankSize;i++){
+            EnemyTank enemyTank = new EnemyTank((100 * (i + 1)), 0);
+            enemyTank.setDirect(2);
+            enemyTanks.add(enemyTank);
+        }
     }
 
     @Override
@@ -28,6 +38,13 @@ public class MyPanel extends JPanel implements KeyListener {
 
         //画坦克-封装方法
         drawTank(hero.getX(),hero.getY(),g,hero.getDirect(),1);
+
+        //画出敌人坦克.遍历Vector
+        for (int i = 0;i < enemyTanks.size();i++){
+            //取出坦克
+            EnemyTank enemyTank = enemyTanks.get(i);
+            drawTank(enemyTank.getX(),enemyTank.getY(),g,enemyTank.getDirect(),0);
+        }
     }
 
     //编写方法，画出坦克
