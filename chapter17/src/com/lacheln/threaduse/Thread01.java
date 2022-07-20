@@ -12,7 +12,23 @@ public class Thread01 {
 
         //创建Cat对象，可以当做线程使用
        Cat cat = new Cat();
-        cat.start();
+       //为什么是调start()方法，而不是调run方法
+
+        /*
+        源码解读
+        1.
+        public synchronized void start() {
+            start0();
+        }
+        2.
+        start0() 是本地方法，是JVM调用，底层是c/c++实现
+        真正实现多线程的效果，是start0()，而不是run
+        private native void start0();
+         */
+        cat.start(); //启动程序 -->> 最终会执行cat的run方法
+
+
+        //cat.run();// run方法就是一个普通的方法，没有真正的启动一个线程，就会把run方法执行完毕，才会向下执行，会造成阻塞
 
         //当main线程 启动一个子线程 Thread-0 ，主线程不会阻塞，会继续执行
         //这时 主线程和子线程是交替执行的
