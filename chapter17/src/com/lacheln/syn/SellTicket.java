@@ -49,21 +49,48 @@ public class SellTicket {
 class SellTicket03 implements Runnable {
     private int ticketNum = 100;//让多个线程共享  ticketNum
     private boolean loop = true;//控制run方法的变量
-    public synchronized void sell(){ //同步方法，在同一时刻，只能有一个线程来执行sell方法
-        if (ticketNum <= 0) {
-            System.out.println("售票结束...");
-            loop = false;
-            return;
-        }
+    Object object = new Object();
 
-        //休眠50ms
-        try {
-            Thread.sleep(50);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+    //同步方法的锁（静态的），为当前类本身
+    //public synchronized static void m1()的锁 是加在 SellTicket03.class
+    //如果要在静态方法中，实现一个代码块
+    /*
+        synchronized (SellTicket03.class) {
+            System.out.println("m2");
         }
-        System.out.println("窗口" + Thread.currentThread().getName() + " 售出一张票" +
-                " 剩余票数" + (--ticketNum));
+     */
+    public synchronized static void m1(){
+
+    }
+    public static void m2(){
+        //注意：同步方法的锁（静态的），为当前类本身，
+        //  所以这里应该填 SellTicket03.class，，填this会报错
+        synchronized (SellTicket03.class) { 
+            System.out.println("m2");
+        }
+    }
+
+    //1.public synchronized void sell() 是一个同步方法
+    //2.这时锁 是在this对象，
+    //3.也可以在代码块上写 synchronized ，同步代码块，互斥锁还是在this对象
+    //4.同步方法的锁可以是this，也可以是其他对象（要求是同一个对象） object
+    public /*synchronized*/ void sell() { //同步方法，在同一时刻，只能有一个线程来执行sell方法
+        synchronized (/*this*/ object) { //同步代码块
+            if (ticketNum <= 0) {
+                System.out.println("售票结束...");
+                loop = false;
+                return;
+            }
+
+            //休眠50ms
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("窗口" + Thread.currentThread().getName() + " 售出一张票" +
+                    " 剩余票数" + (--ticketNum));
+        }
     }
 
     @Override
