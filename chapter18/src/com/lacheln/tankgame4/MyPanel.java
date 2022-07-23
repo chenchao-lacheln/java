@@ -39,8 +39,10 @@ public class MyPanel extends JPanel implements KeyListener,Runnable {
         for (int i = 0;i < enemyTankSize;i++){
             //创建一个敌人坦克
             EnemyTank enemyTank = new EnemyTank((100 * (i + 1)), 0);
-            //设置方法
+            //设置方向
             enemyTank.setDirect(2);
+            //启动敌人坦克线程，让他动起来
+            new Thread(enemyTank).start();
             //给该enemyTank 加入一颗子弹
             Shot shot = new Shot(enemyTank.getX() + 20,enemyTank.getY() + 60,enemyTank.getDirect());
             //加入到 enemyTank 的Vector 成员
@@ -184,6 +186,8 @@ public class MyPanel extends JPanel implements KeyListener,Runnable {
                         && s.y > enemyTank.getY() && s.y < enemyTank.getY() + 60){
                     s.isLive = false;
                     enemyTank.isLive = false;
+                    //当我的子弹击中敌人坦克后，将 enemyTank 从Vector 中拿掉
+                    enemyTanks.remove(enemyTank);
                     //创建Bomb对象，加入到bombs集合
                     Bomb bomb = new Bomb(enemyTank.getX(), enemyTank.getY());
                     bombs.add(bomb);
