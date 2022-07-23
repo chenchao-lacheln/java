@@ -9,14 +9,14 @@ import javax.swing.*;
  * @date 2022/7/18 22:39
  * @since 1.0.0
  */
-public class LachelnTankGame03 extends JFrame {
+public class LachelnTankGame04 extends JFrame {
     //定义一个MyPanel
     MyPanel mp = null;
     public static void main(String[] args) {
-        LachelnTankGame03 lachelnTankGame01 = new LachelnTankGame03();
+        LachelnTankGame04 lachelnTankGame01 = new LachelnTankGame04();
 
     }
-    public LachelnTankGame03(){
+    public LachelnTankGame04(){
         mp = new MyPanel();
         //将mp，放入到Thread 并 启动
         new Thread(mp).start();

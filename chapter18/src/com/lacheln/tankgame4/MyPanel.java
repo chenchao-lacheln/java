@@ -26,8 +26,17 @@ public class MyPanel extends JPanel implements KeyListener,Runnable {
         //hero.setSpeed(5);//设置坦克的移动速度
         //初始化敌人坦克
         for (int i = 0;i < enemyTankSize;i++){
+            //创建一个敌人坦克
             EnemyTank enemyTank = new EnemyTank((100 * (i + 1)), 0);
+            //设置方法
             enemyTank.setDirect(2);
+            //给该enemyTank 加入一颗子弹
+            Shot shot = new Shot(enemyTank.getX() + 20,enemyTank.getY() + 60,enemyTank.getDirect());
+            //加入到 enemyTank 的Vector 成员
+            enemyTank.shots.add(shot);
+            //启动shot对象
+            new Thread(shot).start();
+            //加入
             enemyTanks.add(enemyTank);
         }
     }
@@ -53,6 +62,18 @@ public class MyPanel extends JPanel implements KeyListener,Runnable {
             //取出坦克
             EnemyTank enemyTank = enemyTanks.get(i);
             drawTank(enemyTank.getX(),enemyTank.getY(),g,enemyTank.getDirect(),0);
+            //画出  enemyTank 的所有子弹
+            for (int j = 0;j < enemyTank.shots.size();j++){
+                //取出子弹
+                Shot shot = enemyTank.shots.get(j);
+                //绘制所有子弹，需要判断子弹是否还存活
+                if (shot.isLive){ //isLive == true
+                    g.draw3DRect(shot.x, shot.y, 1,1,false);
+                }else {
+                    //从Vector 移除
+                    enemyTank.shots.remove(shot);
+                }
+            }
         }
     }
 
