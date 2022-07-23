@@ -240,8 +240,13 @@ public class MyPanel extends JPanel implements KeyListener,Runnable {
 
         //如果用户按下的是J，就发射
         if (e.getKeyCode() == KeyEvent.VK_J){
-            System.out.println("用户按下了J，开始射击..");
-            hero.shotEnemyTank();
+            //System.out.println("用户按下了J，开始射击..");
+            //判断Hero的子弹是否销毁,注意判断条件，
+            // 一是shot为空,也就是第一次被创建的时候，
+            // 二是shot不为空，但是属性isLive为false，碰到边界销毁/敌人坦克
+            if (hero.shot == null || !hero.shot.isLive) {
+                hero.shotEnemyTank();
+            }
         }
         //重绘面板
         this.repaint();
