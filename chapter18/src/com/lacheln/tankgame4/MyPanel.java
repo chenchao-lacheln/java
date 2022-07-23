@@ -23,7 +23,7 @@ public class MyPanel extends JPanel implements KeyListener,Runnable {
     int enemyTankSize = 3;
     public MyPanel(){
         hero = new Hero(100,100);//初始化自己的坦克
-        //hero.setSpeed(5);//设置坦克的移动速度
+        hero.setSpeed(5);//设置坦克的移动速度
         //初始化敌人坦克
         for (int i = 0;i < enemyTankSize;i++){
             //创建一个敌人坦克
@@ -58,20 +58,23 @@ public class MyPanel extends JPanel implements KeyListener,Runnable {
         }
 
         //画出敌人坦克.遍历Vector
-        for (int i = 0;i < enemyTanks.size();i++){
-            //取出坦克
+        for (int i = 0;i < enemyTanks.size();i++) {
+            //从 Vector 取出坦克
             EnemyTank enemyTank = enemyTanks.get(i);
-            drawTank(enemyTank.getX(),enemyTank.getY(),g,enemyTank.getDirect(),0);
-            //画出  enemyTank 的所有子弹
-            for (int j = 0;j < enemyTank.shots.size();j++){
-                //取出子弹
-                Shot shot = enemyTank.shots.get(j);
-                //绘制所有子弹，需要判断子弹是否还存活
-                if (shot.isLive){ //isLive == true
-                    g.draw3DRect(shot.x, shot.y, 1,1,false);
-                }else {
-                    //从Vector 移除
-                    enemyTank.shots.remove(shot);
+            //判断当前坦克 是否还存活
+            if (enemyTank.isLive) { //当敌人坦克是存活的，才画出该坦克
+                drawTank(enemyTank.getX(), enemyTank.getY(), g, enemyTank.getDirect(), 0);
+                //画出  enemyTank 的所有子弹
+                for (int j = 0; j < enemyTank.shots.size(); j++) {
+                    //取出子弹
+                    Shot shot = enemyTank.shots.get(j);
+                    //绘制所有子弹，需要判断子弹是否还存活
+                    if (shot.isLive) { //isLive == true
+                        g.draw3DRect(shot.x, shot.y, 1, 1, false);
+                    } else {
+                        //从Vector 移除
+                        enemyTank.shots.remove(shot);
+                    }
                 }
             }
         }
@@ -134,6 +137,30 @@ public class MyPanel extends JPanel implements KeyListener,Runnable {
         }
     }
 
+    //编写方法，判断我方的子弹是否击中敌人坦克
+    //什么时候判断 我方的子弹是否击中敌人坦克？ run方法
+    public static void HitTank(Shot s, EnemyTank enemyTank){
+        //判断 s 击中坦克
+        switch (enemyTank.getDirect()){
+            case 0: //敌人坦克向上
+            case 2: //敌人坦克向下
+                if (s.x > enemyTank.getX() && s.x < enemyTank.getX() + 40
+                        && s.y > enemyTank.getY() && s.y < enemyTank.getY() + 60){
+                    s.isLive = false;
+                    enemyTank.isLive = false;
+                }
+                break;
+            case 1: //敌人坦克向右
+            case 3: //敌人坦克向左
+                if (s.x > enemyTank.getX() && s.x < enemyTank.getX() + 60
+                        && s.y > enemyTank.getY() && s.y < enemyTank.getY() + 40){
+                    s.isLive = false;
+                    enemyTank.isLive = false;
+                }
+                break;
+        }
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
 
@@ -179,6 +206,18 @@ public class MyPanel extends JPanel implements KeyListener,Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+            //判断是否击中敌人坦克
+            //当前的hero.shot 是通过 J 触发的，没触发之前是null，会报NullPointException错误，需要新增null判断
+            if (hero.shot != null && hero.shot.isLive){ //当我的子弹还存活
+
+                //并不清楚，这颗子弹会击中敌人的哪一个坦克，选择遍历敌人所有坦克
+                for (int i = 0;i < enemyTanks.size();i++){
+                    EnemyTank enemyTank = enemyTanks.get(i);
+                    HitTank(hero.shot,enemyTank);
+                }
+            }
+
             this.repaint();
         }
     }
