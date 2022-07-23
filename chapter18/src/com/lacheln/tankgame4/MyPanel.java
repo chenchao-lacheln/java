@@ -20,7 +20,18 @@ public class MyPanel extends JPanel implements KeyListener,Runnable {
     Hero hero = null;
     //定义敌人的坦克，放入到Vector中
     Vector<EnemyTank> enemyTanks = new Vector<>();
+    //定义一个Vector 用户存放炸弹
+    //当子弹击中坦克时，加入Bomb对象到bombs
+    Vector<Bomb> bombs = new Vector<>();
     int enemyTankSize = 3;
+
+    //定义3张炸弹图片，显示爆炸效果
+    Image image1 = null;
+    Image image2 = null;
+    Image image3 = null;
+
+
+
     public MyPanel(){
         hero = new Hero(100,100);//初始化自己的坦克
         hero.setSpeed(5);//设置坦克的移动速度
@@ -39,6 +50,10 @@ public class MyPanel extends JPanel implements KeyListener,Runnable {
             //加入
             enemyTanks.add(enemyTank);
         }
+        //初始化图片对象
+        image1 = Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/bomb_1.gif"));
+        image2 = Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/bomb_2.gif"));
+        image3 = Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/bomb_3.gif"));
     }
 
     @Override
@@ -55,6 +70,27 @@ public class MyPanel extends JPanel implements KeyListener,Runnable {
             System.out.println("子弹被绘制...");
             //g.fill3DRect(hero.shot.x,hero.shot.y,1,1,false);
             g.draw3DRect(hero.shot.x,hero.shot.y,1,1,false);
+        }
+
+        //显示炸弹
+        //如果bombs集合中有对象，就画出
+        for (int i = 0;i < bombs.size();i++){
+            //取出炸弹
+            Bomb bomb = bombs.get(i);
+            //根据当前bomb对象的life值，画出对应的图片
+            if (bomb.life > 6){
+                g.drawImage(image1,bomb.x,bomb.y,60,60,this);
+            }else if (bomb.life > 3){
+                g.drawImage(image2,bomb.x,bomb.y,60,60,this);
+            }else {
+                g.drawImage(image3,bomb.x,bomb.y,60,60,this);
+            }
+            //让这个诈弹的生命值减少
+            bomb.lifeDown();
+            //如果bomb的life为0，就从bombs 集合中删除
+            if (bomb.life == 0){
+                bombs.remove(bomb);
+            }
         }
 
         //画出敌人坦克.遍历Vector
@@ -139,7 +175,7 @@ public class MyPanel extends JPanel implements KeyListener,Runnable {
 
     //编写方法，判断我方的子弹是否击中敌人坦克
     //什么时候判断 我方的子弹是否击中敌人坦克？ run方法
-    public static void HitTank(Shot s, EnemyTank enemyTank){
+    public void HitTank(Shot s, EnemyTank enemyTank){
         //判断 s 击中坦克
         switch (enemyTank.getDirect()){
             case 0: //敌人坦克向上
@@ -148,6 +184,9 @@ public class MyPanel extends JPanel implements KeyListener,Runnable {
                         && s.y > enemyTank.getY() && s.y < enemyTank.getY() + 60){
                     s.isLive = false;
                     enemyTank.isLive = false;
+                    //创建Bomb对象，加入到bombs集合
+                    Bomb bomb = new Bomb(enemyTank.getX(), enemyTank.getY());
+                    bombs.add(bomb);
                 }
                 break;
             case 1: //敌人坦克向右
@@ -156,6 +195,9 @@ public class MyPanel extends JPanel implements KeyListener,Runnable {
                         && s.y > enemyTank.getY() && s.y < enemyTank.getY() + 40){
                     s.isLive = false;
                     enemyTank.isLive = false;
+                    //创建Bomb对象，加入到bombs集合
+                    Bomb bomb = new Bomb(enemyTank.getX(), enemyTank.getY());
+                    bombs.add(bomb);
                 }
                 break;
         }
