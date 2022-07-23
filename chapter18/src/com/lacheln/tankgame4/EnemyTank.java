@@ -9,6 +9,7 @@ import java.util.Vector;
  * @date 2022/7/19 08:39
  * @since 1.0.0
  */
+@SuppressWarnings({"all"})
 public class EnemyTank extends Tank implements Runnable{
     //在敌人坦克类，使用Vector 保存多个Shot
     Vector<Shot> shots = new Vector<>();
@@ -21,6 +22,31 @@ public class EnemyTank extends Tank implements Runnable{
     @Override
     public void run() {
         while (true){
+
+            //判断如果sorts size() == 0 ,创建一颗子弹，放入到
+            //shots集合，并启动
+            if (isLive && shots.size() < 1){
+                Shot s = null;
+                //判断坦克的方向，创建对应的子弹
+                switch (getDirect()){
+                    case 0:
+                        s = new Shot(getX() + 20,getY(),0);
+                        break;
+                    case 1:
+                        s = new Shot(getX() + 60,getY() + 20,1);
+                        break;
+                    case 2:
+                        s = new Shot(getX() + 20,getY() + 60,2);
+                        break;
+                    case 3:
+                        s = new Shot(getX(),getY() + 20,3);
+                        break;
+                }
+                shots.add(s);
+                //启动
+                new Thread(s).start();
+            }
+
             //根据坦克的方向继续移动
             switch (getDirect()){
                 case 0: //向上
