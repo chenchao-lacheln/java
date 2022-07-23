@@ -12,6 +12,7 @@ public class Tank {
     private int y;//坦克的纵坐标
     private int direct; //坦克方法 0 上 1 右 2 下 3 左
     private int speed = 1;
+    boolean isLive = true;
 
     public int getSpeed() {
         return speed;

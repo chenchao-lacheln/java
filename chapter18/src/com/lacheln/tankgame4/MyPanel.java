@@ -63,8 +63,10 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
         super.paint(g);
         g.fillRect(0, 0, 1000, 750);//填充矩形，默认是黑色
 
-        //画坦克-封装方法
-        drawTank(hero.getX(), hero.getY(), g, hero.getDirect(), 1);
+        if (hero != null && hero.isLive) {
+            //画出自己坦克-封装方法
+            drawTank(hero.getX(), hero.getY(), g, hero.getDirect(), 1);
+        }
 
         //画出Hero射击的子弹
         if (hero.shot != null && hero.shot.isLive == true){
@@ -202,34 +204,62 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
 //                }
 //            }
 //        }
+
+        //单颗子弹
+        //当前的hero.shot 是通过 J 触发的，没触发之前是null，会报NullPointException错误，需要新增null判断
+        if (hero.shot != null && hero.shot.isLive) { //当我的子弹还存活
+            //并不清楚，这颗子弹会击中敌人的哪一个坦克，选择遍历敌人所有坦克
+            for (int i = 0; i < enemyTanks.size(); i++) {
+                EnemyTank enemyTank = enemyTanks.get(i);
+                HitTank(hero.shot, enemyTank);
+            }
+        }
+    }
+
+    //编写方法，判断敌人坦克是否击中我方坦克
+    public void hitHero(){
+        //遍历所有敌人坦克
+        for (int i = 0; i < enemyTanks.size(); i++) {
+            //取出敌人坦克
+            EnemyTank enemyTank = enemyTanks.get(i);
+            //遍历 enemyTank 坦克对象的所有子弹
+            for (int j = 0; j < enemyTank.shots.size(); j++) {
+                //取出子弹
+                Shot shot = enemyTank.shots.get(j);
+                //判断shot是否击中我的坦克
+                if (hero.isLive && shot.isLive){
+                    HitTank(shot,hero);
+                }
+            }
+        }
     }
 
     //编写方法，判断我方的子弹是否击中敌人坦克
     //什么时候判断 我方的子弹是否击中敌人坦克？ run方法
-    public void HitTank(Shot s, EnemyTank enemyTank) {
+    public void HitTank(Shot s, Tank Tank) {
         //判断 s 击中坦克
-        switch (enemyTank.getDirect()) {
+        switch (Tank.getDirect()) {
             case 0: //敌人坦克向上
             case 2: //敌人坦克向下
-                if (s.x > enemyTank.getX() && s.x < enemyTank.getX() + 40
-                        && s.y > enemyTank.getY() && s.y < enemyTank.getY() + 60) {
+                if (s.x > Tank.getX() && s.x < Tank.getX() + 40
+                        && s.y > Tank.getY() && s.y < Tank.getY() + 60) {
                     s.isLive = false;
-                    enemyTank.isLive = false;
+                    Tank.isLive = false;
                     //当我的子弹击中敌人坦克后，将 enemyTank 从Vector 中拿掉
-                    enemyTanks.remove(enemyTank);
+                    enemyTanks.remove(Tank);
                     //创建Bomb对象，加入到bombs集合
-                    Bomb bomb = new Bomb(enemyTank.getX(), enemyTank.getY());
+                    Bomb bomb = new Bomb(Tank.getX(), Tank.getY());
                     bombs.add(bomb);
                 }
                 break;
             case 1: //敌人坦克向右
             case 3: //敌人坦克向左
-                if (s.x > enemyTank.getX() && s.x < enemyTank.getX() + 60
-                        && s.y > enemyTank.getY() && s.y < enemyTank.getY() + 40) {
+                if (s.x > Tank.getX() && s.x < Tank.getX() + 60
+                        && s.y > Tank.getY() && s.y < Tank.getY() + 40) {
                     s.isLive = false;
-                    enemyTank.isLive = false;
+                    Tank.isLive = false;
                     //创建Bomb对象，加入到bombs集合
-                    Bomb bomb = new Bomb(enemyTank.getX(), enemyTank.getY());
+                    Bomb bomb = new Bomb(Tank.getX(), Tank.getY());
                     bombs.add(bomb);
                 }
                 break;
@@ -299,14 +329,9 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
             }
 
             //判断是否击中敌人坦克
-            //当前的hero.shot 是通过 J 触发的，没触发之前是null，会报NullPointException错误，需要新增null判断
-            if (hero.shot != null && hero.shot.isLive) { //当我的子弹还存活
-                //并不清楚，这颗子弹会击中敌人的哪一个坦克，选择遍历敌人所有坦克
-                for (int i = 0; i < enemyTanks.size(); i++) {
-                    EnemyTank enemyTank = enemyTanks.get(i);
-                    HitTank(hero.shot, enemyTank);
-                }
-            }
+            hitEnemyTank();
+            //判断敌人坦克是否击中我们
+            hitHero();
             this.repaint();
         }
     }
