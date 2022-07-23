@@ -1,4 +1,6 @@
-package com.lacheln.tankgame4;
+package com.lacheln.tankgame41;
+
+import java.util.Vector;
 
 /**
  * Hero
@@ -11,7 +13,7 @@ public class Hero extends Tank {
     //定义一个shot对象,表示一个射击(线程)
     Shot shot = null;
     //可以发射多颗子弹
-//    Vector<Shot> shots = new Vector<>();
+    Vector<Shot> shots = new Vector<>();
 
     public Hero(int x, int y) {
         super(x, y);
@@ -21,9 +23,9 @@ public class Hero extends Tank {
     public void shotEnemyTank(){
 
         //一次性最多发射5可子弹
-//        if (shots.size() == 5){
-//            return;
-//        }
+        if (shots.size() == 5){
+            return;
+        }
 
         //创建Shot对象，需要根据当前Hero对象的位置和方向来创建
         switch (getDirect()){ //得到Hero对象的方法
@@ -42,7 +44,7 @@ public class Hero extends Tank {
         }
 
         //把新创建的shot放入到shots
-//        shots.add(shot);
+        shots.add(shot);
         //启动Shot线程
         new Thread(shot).start();
     }

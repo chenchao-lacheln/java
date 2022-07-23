@@ -1,4 +1,4 @@
-package com.lacheln.tankgame4;
+package com.lacheln.tankgame41;
 
 import javax.swing.*;
 import java.awt.*;
@@ -67,21 +67,21 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
         drawTank(hero.getX(), hero.getY(), g, hero.getDirect(), 1);
 
         //画出Hero射击的子弹
-        if (hero.shot != null && hero.shot.isLive == true){
-            //注意：这里只绘制了一次，子弹需要不停的重绘
-            //System.out.println("子弹被绘制...");
-            //g.fill3DRect(hero.shot.x,hero.shot.y,1,1,false);
-            g.draw3DRect(hero.shot.x,hero.shot.y,1,1,false);
-        }
-        //将hero的子弹集合 shots，遍历取出绘制
-//        for (int i = 0; i < hero.shots.size(); i++) {
-//            Shot shot = hero.shots.get(i);
-//            if (shot != null && shot.isLive) {
-//                g.draw3DRect(shot.x, shot.y, 1, 1, false);
-//            }else { //如果该shot对象已经无效，就从shots集合中拿掉
-//                hero.shots.remove(shot);
-//            }
+//        if (hero.shot != null && hero.shot.isLive == true){
+//            //注意：这里只绘制了一次，子弹需要不停的重绘
+//            //System.out.println("子弹被绘制...");
+//            //g.fill3DRect(hero.shot.x,hero.shot.y,1,1,false);
+//            g.draw3DRect(hero.shot.x,hero.shot.y,1,1,false);
 //        }
+        //将hero的子弹集合 shots，遍历取出绘制
+        for (int i = 0; i < hero.shots.size(); i++) {
+            Shot shot = hero.shots.get(i);
+            if (shot != null && shot.isLive) {
+                g.draw3DRect(shot.x, shot.y, 1, 1, false);
+            }else { //如果该shot对象已经无效，就从shots集合中拿掉
+                hero.shots.remove(shot);
+            }
+        }
 
         //显示炸弹
         //如果bombs集合中有对象，就画出
@@ -189,19 +189,19 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
 
     public void hitEnemyTank(){
 
-//        //遍历我们的子弹
-//        for (int j = 0;j < hero.shots.size();j++) {
-//            Shot shot = hero.shots.get(j);
-//            //判断是否击中敌人坦克
-//            //当前的hero.shot 是通过 J 触发的，没触发之前是null，会报NullPointException错误，需要新增null判断
-//            if (shot != null && shot.isLive) { //当我的子弹还存活
-//                //并不清楚，这颗子弹会击中敌人的哪一个坦克，选择遍历敌人所有坦克
-//                for (int i = 0; i < enemyTanks.size(); i++) {
-//                    EnemyTank enemyTank = enemyTanks.get(i);
-//                    HitTank(shot, enemyTank);
-//                }
-//            }
-//        }
+        //遍历我们的子弹
+        for (int j = 0;j < hero.shots.size();j++) {
+            Shot shot = hero.shots.get(j);
+            //判断是否击中敌人坦克
+            //当前的hero.shot 是通过 J 触发的，没触发之前是null，会报NullPointException错误，需要新增null判断
+            if (shot != null && shot.isLive) { //当我的子弹还存活
+                //并不清楚，这颗子弹会击中敌人的哪一个坦克，选择遍历敌人所有坦克
+                for (int i = 0; i < enemyTanks.size(); i++) {
+                    EnemyTank enemyTank = enemyTanks.get(i);
+                    HitTank(shot, enemyTank);
+                }
+            }
+        }
     }
 
     //编写方法，判断我方的子弹是否击中敌人坦克
@@ -273,12 +273,12 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
             //判断Hero的子弹是否销毁,注意判断条件，--发射一颗子弹
             // 一是shot为空,也就是第一次被创建的时候，
             // 二是shot不为空，但是属性isLive为false，碰到边界销毁/敌人坦克
-            if (hero.shot == null || !hero.shot.isLive) {
-                hero.shotEnemyTank();
-            }
+//            if (hero.shot == null || !hero.shot.isLive) {
+//                hero.shotEnemyTank();
+//            }
 
             //发射多颗子弹
-//            hero.shotEnemyTank();
+            hero.shotEnemyTank();
         }
         //重绘面板
         this.repaint();
@@ -297,16 +297,7 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
-            //判断是否击中敌人坦克
-            //当前的hero.shot 是通过 J 触发的，没触发之前是null，会报NullPointException错误，需要新增null判断
-            if (hero.shot != null && hero.shot.isLive) { //当我的子弹还存活
-                //并不清楚，这颗子弹会击中敌人的哪一个坦克，选择遍历敌人所有坦克
-                for (int i = 0; i < enemyTanks.size(); i++) {
-                    EnemyTank enemyTank = enemyTanks.get(i);
-                    HitTank(hero.shot, enemyTank);
-                }
-            }
+            hitEnemyTank();
             this.repaint();
         }
     }
