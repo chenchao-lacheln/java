@@ -18,6 +18,8 @@ public class LachelnTankGame03 extends JFrame {
     }
     public LachelnTankGame03(){
         mp = new MyPanel();
+        //将mp，放入到Thread 并 启动
+        new Thread(mp).start();
         this.add(mp);//把面板（就是游戏的绘图区域）
         this.setSize(1000,750);//设置大小
         this.addKeyListener(mp); //让JFrame 监听 mp的键盘事件

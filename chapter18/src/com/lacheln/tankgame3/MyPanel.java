@@ -14,7 +14,8 @@ import java.util.Vector;
  * @since 1.0.0
  */
 //为了监听键盘时间，实现接口KeyListener
-public class MyPanel extends JPanel implements KeyListener {
+//为了让MyPanel 不停的重绘子弹，需要将 MyPanel 实现Runnable ，当做一个线程使用
+public class MyPanel extends JPanel implements KeyListener,Runnable {
     //定义我的坦克
     Hero hero = null;
     //定义敌人的坦克，放入到Vector中
@@ -38,6 +39,14 @@ public class MyPanel extends JPanel implements KeyListener {
 
         //画坦克-封装方法
         drawTank(hero.getX(),hero.getY(),g,hero.getDirect(),1);
+
+        //画出Hero射击的子弹
+        if (hero.shot != null && hero.shot.isLive == true){
+            //注意：这里只绘制了一次，子弹需要不停的重绘
+            System.out.println("子弹被绘制...");
+            //g.fill3DRect(hero.shot.x,hero.shot.y,1,1,false);
+            g.draw3DRect(hero.shot.x,hero.shot.y,1,1,false);
+        }
 
         //画出敌人坦克.遍历Vector
         for (int i = 0;i < enemyTanks.size();i++){
@@ -139,5 +148,17 @@ public class MyPanel extends JPanel implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    @Override
+    public void run() { //每隔100ms，重绘区域,刷新绘图区域，子弹就移动
+        while (true) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            this.repaint();
+        }
     }
 }
