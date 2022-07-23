@@ -183,6 +183,8 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
         }
     }
 
+    //
+
     //编写方法，判断我方的子弹是否击中敌人坦克
     //什么时候判断 我方的子弹是否击中敌人坦克？ run方法
     public void HitTank(Shot s, EnemyTank enemyTank) {
