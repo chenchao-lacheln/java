@@ -47,4 +47,32 @@ public class FileInputStream_ {
             }
         }
     }
+
+    @Test
+    public void readFile02(){
+        String filePath = "/Users/chenchao/personal/java/hello.txt";
+        //字节数组
+        byte[] buf = new byte[8];//一次读取8个字节
+        int readLen = 0;
+        FileInputStream fileInputStream = null;
+        try {
+            //创建 FileInputStream 对象，用户读取文件
+            fileInputStream = new FileInputStream(filePath);
+            // read(byte[] b) 从该输入流读取最多b.length字节的数据到字节数组。此方法将阻塞，知道某些输入可用
+            // 如果返回-1，表示读取完毕
+            //如果读取正常，返回实际读取的字节数
+            while ((readLen = fileInputStream.read(buf)) != -1){
+                System.out.print(new String(buf,0,readLen));//转成char显示
+            }
+        } catch (IOException e) { // FileNotFoundException -->> IOException
+            e.printStackTrace();
+        }finally {
+            //关闭文件流，释放资源
+            try {
+                fileInputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
