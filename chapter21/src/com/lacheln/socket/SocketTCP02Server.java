@@ -2,6 +2,7 @@ package com.lacheln.socket;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -12,7 +13,8 @@ import java.net.Socket;
  * @date 2022/7/27 01:16
  * @since 1.0.0
  */
-public class SocketTCP01Server {
+@SuppressWarnings({"all"})
+public class SocketTCP02Server {
     public static void main(String[] args) throws IOException {
         //1.在本机的9999端C监听,等待连接
         //  细节：要求 在本机没有其他服务 在监听9999
@@ -31,7 +33,13 @@ public class SocketTCP01Server {
         while ((readLen = inputStream.read(buf)) != -1){
             System.out.println(new String(buf,0,readLen)); //根据读到的实际长度，显示内容
         }
-        //5.关闭流和Socket，避免资源浪费
+        //5.获取socket相关联的输出流
+        OutputStream outputStream = socket.getOutputStream();
+        outputStream.write("hello,client".getBytes());
+        //设置结束标记
+        socket.shutdownOutput();
+        //6.关闭流和Socket，避免资源浪费
+        outputStream.close();
         inputStream.close();
         socket.close();
         serverSocket.close();
