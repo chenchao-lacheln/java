@@ -32,9 +32,33 @@ public class FileWriter_ {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            // 对应FileWriter，一定要关闭流，或者flush才能正在的把数据写入 -->> 源码解读
+            // 对应FileWriter，一定要关闭流，或者flush才能正在的把数据写入 -->> 源码解读  底层还是用的FileOutoutStream 文件输出流
+            /*
+                源码解读
+            private void writeBytes() throws IOException {
+                    this.bb.flip();
+                    int var1 = this.bb.limit();
+                    int var2 = this.bb.position();
+
+                    assert var2 <= var1;
+
+                    int var3 = var2 <= var1 ? var1 - var2 : 0;
+                    if (var3 > 0) {
+                        if (this.ch != null) {
+                            assert this.ch.write(this.bb) == var3 : var3;
+                        } else {
+                            this.out.write(this.bb.array(), this.bb.arrayOffset() + var2, var3);
+                        }
+                    }
+
+                    this.bb.clear();
+                }
+
+             */
             try {
+                //关闭文件流 等价于 flush() + 关闭
                 fileWriter.close();
+//                fileWriter.flush();
             } catch (IOException e) {
                 e.printStackTrace();
             }
