@@ -34,7 +34,7 @@ public class HomeWork04 {
         for (int i = 0; i < strLen; i++) {
             if ( str.charAt(i)>= '0' && str.charAt(i) <= '9'){
                  numCount++;
-            }else if (str.charAt(i)>= 'a' && str.charAt(i) <= 'a'){
+            }else if (str.charAt(i)>= 'a' && str.charAt(i) <= 'z'){
                 lowerCount++;
             }else if (str.charAt(i)>= 'A' && str.charAt(i) <= 'Z'){
                 upperCount++;
