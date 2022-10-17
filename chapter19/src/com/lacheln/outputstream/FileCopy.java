@@ -1,8 +1,6 @@
 package com.lacheln.outputstream;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * FileCopy
@@ -50,5 +48,7 @@ public class FileCopy {
                 e.printStackTrace();
             }
         }
+//        Writer 类图
+//        Reader
     }
 }
