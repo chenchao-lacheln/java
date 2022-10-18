@@ -5,7 +5,9 @@
   <nodes>
     <node x="294.0" y="78.0">java.lang.Appendable</node>
     <node x="146.0" y="78.0">java.io.Closeable</node>
+    <node x="147.5" y="312.0">java.io.FileWriter</node>
     <node x="160.5" y="156.0">java.io.Writer</node>
+    <node x="106.0" y="234.0">java.io.OutputStreamWriter</node>
     <node x="128.0" y="0.0">java.lang.AutoCloseable</node>
     <node x="0.0" y="78.0">java.io.Flushable</node>
   </nodes>
@@ -15,10 +17,18 @@
       <point x="0.0" y="-14.0" />
       <point x="0.0" y="14.0" />
     </edge>
+    <edge source="java.io.OutputStreamWriter" target="java.io.Writer" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
     <edge source="java.io.Writer" target="java.io.Flushable" relationship="REALIZATION">
       <point x="0.0" y="-14.0" />
       <point x="210.0" y="131.0" />
       <point x="63.0" y="131.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.io.FileWriter" target="java.io.OutputStreamWriter" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
       <point x="0.0" y="14.0" />
     </edge>
     <edge source="java.io.Writer" target="java.io.Closeable" relationship="REALIZATION">
@@ -32,7 +42,7 @@
       <point x="0.0" y="14.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="219.0" y="92.0" />
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="219.0" y="170.0" />
   <SelectedNodes>
     <node>java.io.Writer</node>
   </SelectedNodes>

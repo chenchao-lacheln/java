@@ -48,7 +48,7 @@ public class FileCopy {
                 e.printStackTrace();
             }
         }
-//        Writer 类图
+//        Writer
 //        Reader
     }
 }
