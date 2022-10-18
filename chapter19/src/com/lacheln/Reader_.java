@@ -17,5 +17,5 @@ public abstract class Reader_ { //抽象类
 
     //在Reader_抽象类，使用Read方法统一管理
     //在后面调用时，利用动态绑定机制，绑定到对应的实现子类即可
-    //public abstract void read();
+    //public abstract voida read();
 }
