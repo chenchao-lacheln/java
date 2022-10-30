@@ -12,7 +12,8 @@ import java.io.*;
  */
 public class BufferedCopy_ {
     public static void main(String[] args) {
-
+        //BufferedInputStream
+        //BufferedOutputStream
         //注意
         // BufferedReader 和BufferedWriter 按照字符操作
         //不要去操作二进制文件(声音、视频、Doc文档)，操作二进制文件可能导致损坏
