@@ -3,31 +3,27 @@
   <ID>JAVA</ID>
   <OriginalElement>java.io.Reader</OriginalElement>
   <nodes>
-    <node x="143.0" y="78.0">java.io.Closeable</node>
-    <node x="0.0" y="78.0">java.lang.Readable</node>
+    <node x="67.25" y="312.0">java.io.FileReader</node>
     <node x="81.25" y="156.0">java.io.Reader</node>
-    <node x="125.0" y="0.0">java.lang.AutoCloseable</node>
+    <node x="33.25" y="234.0">java.io.InputStreamReader</node>
+    <node x="125.00000000000001" y="0.0">java.lang.AutoCloseable</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="java.io.Closeable" target="java.lang.AutoCloseable" relationship="INTERFACE_GENERALIZATION">
+    <edge source="java.io.InputStreamReader" target="java.io.Reader" relationship="GENERALIZATION">
       <point x="0.0" y="-14.0" />
       <point x="0.0" y="14.0" />
     </edge>
-    <edge source="java.io.Reader" target="java.lang.Readable" relationship="REALIZATION">
+    <edge source="java.io.FileReader" target="java.io.InputStreamReader" relationship="GENERALIZATION">
       <point x="0.0" y="-14.0" />
-      <point x="134.25" y="131.0" />
-      <point x="61.5" y="131.0" />
       <point x="0.0" y="14.0" />
     </edge>
-    <edge source="java.io.Reader" target="java.io.Closeable" relationship="REALIZATION">
-      <point x="0.0" y="-14.0" />
-      <point x="134.25" y="131.0" />
-      <point x="207.0" y="131.0" />
-      <point x="0.0" y="14.0" />
+    <edge source="java.io.Reader" target="java.lang.AutoCloseable" relationship="REALIZATION">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="144.5" y="92.0" />
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="161.0" y="170.0" />
   <SelectedNodes>
     <node>java.io.Reader</node>
   </SelectedNodes>

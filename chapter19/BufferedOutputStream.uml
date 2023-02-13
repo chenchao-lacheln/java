@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>java.io.BufferedOutputStream</OriginalElement>
+  <nodes>
+    <node x="85.5" y="166.0">java.io.OutputStream</node>
+    <node x="20.0" y="83.0">java.io.Closeable</node>
+    <node x="25.5" y="278.0">java.io.FilterOutputStream</node>
+    <node x="0.0" y="0.0">java.lang.AutoCloseable</node>
+    <node x="188.0" y="83.0">java.io.Flushable</node>
+    <node x="0.5" y="417.0">java.io.BufferedOutputStream</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="java.io.OutputStream" target="java.io.Flushable" relationship="REALIZATION">
+      <point x="46.0" y="-31.0" />
+      <point x="223.5" y="141.0" />
+      <point x="261.0" y="141.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.io.Closeable" target="java.lang.AutoCloseable" relationship="INTERFACE_GENERALIZATION">
+      <point x="0.0" y="-16.5" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.io.OutputStream" target="java.io.Closeable" relationship="REALIZATION">
+      <point x="-46.0" y="-31.0" />
+      <point x="131.5" y="141.0" />
+      <point x="94.0" y="141.0" />
+      <point x="0.0" y="16.5" />
+    </edge>
+    <edge source="java.io.FilterOutputStream" target="java.io.OutputStream" relationship="GENERALIZATION">
+      <point x="0.0" y="-44.5" />
+      <point x="0.0" y="31.0" />
+    </edge>
+    <edge source="java.io.BufferedOutputStream" target="java.io.FilterOutputStream" relationship="GENERALIZATION">
+      <point x="0.0" y="-70.5" />
+      <point x="0.0" y="44.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.8384744309822034" showDependencies="false" x="220.81675720214844" y="205.0578842163086" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

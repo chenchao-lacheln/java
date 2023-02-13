@@ -3,40 +3,44 @@
   <ID>JAVA</ID>
   <OriginalElement>java.io.Writer</OriginalElement>
   <nodes>
-    <node x="294.0" y="78.0">java.lang.Appendable</node>
-    <node x="146.0" y="78.0">java.io.Closeable</node>
-    <node x="160.5" y="156.0">java.io.Writer</node>
-    <node x="128.0" y="0.0">java.lang.AutoCloseable</node>
-    <node x="0.0" y="78.0">java.io.Flushable</node>
+    <node x="83.0" y="867.0">java.io.FileWriter</node>
+    <node x="48.0" y="103.0">java.io.Writer</node>
+    <node x="0.0" y="518.0">java.io.OutputStreamWriter</node>
+    <node x="191.5" y="0.0">java.lang.AutoCloseable</node>
+    <node x="43.5" y="0.0">java.io.Flushable</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="java.io.Closeable" target="java.lang.AutoCloseable" relationship="INTERFACE_GENERALIZATION">
-      <point x="0.0" y="-14.0" />
-      <point x="0.0" y="14.0" />
+    <edge source="java.io.Writer" target="java.lang.AutoCloseable" relationship="REALIZATION">
+      <point x="0.0" y="-182.5" />
+      <point x="191.0" y="78.0" />
+      <point x="274.5" y="78.0" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="java.io.OutputStreamWriter" target="java.io.Writer" relationship="GENERALIZATION">
+      <point x="0.0" y="-149.5" />
+      <point x="0.0" y="182.5" />
     </edge>
     <edge source="java.io.Writer" target="java.io.Flushable" relationship="REALIZATION">
-      <point x="0.0" y="-14.0" />
-      <point x="210.0" y="131.0" />
-      <point x="63.0" y="131.0" />
-      <point x="0.0" y="14.0" />
+      <point x="0.0" y="-182.5" />
+      <point x="191.0" y="78.0" />
+      <point x="107.5" y="78.0" />
+      <point x="0.0" y="26.5" />
     </edge>
-    <edge source="java.io.Writer" target="java.io.Closeable" relationship="REALIZATION">
-      <point x="0.0" y="-14.0" />
-      <point x="0.0" y="14.0" />
-    </edge>
-    <edge source="java.io.Writer" target="java.lang.Appendable" relationship="REALIZATION">
-      <point x="0.0" y="-14.0" />
-      <point x="210.0" y="131.0" />
-      <point x="366.0" y="131.0" />
-      <point x="0.0" y="14.0" />
+    <edge source="java.io.FileWriter" target="java.io.OutputStreamWriter" relationship="GENERALIZATION">
+      <point x="0.0" y="-70.5" />
+      <point x="0.0" y="149.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="1.0" showDependencies="false" x="219.0" y="92.0" />
+  <settings layout="Hierarchic" zoom="0.33949416342412453" showDependencies="false" x="191.0" y="504.0" />
   <SelectedNodes>
-    <node>java.io.Writer</node>
+    <node>java.io.FileWriter</node>
   </SelectedNodes>
-  <Categories />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
 </Diagram>
