@@ -1,5 +1,7 @@
 package com.lacheln.standard;
 
+import java.util.Scanner;
+
 /**
  * InputAndOutput
  *
@@ -29,6 +31,22 @@ public class InputAndOutput {
 
         /*
         总结 ：System.in 和  System.out 其实分别对应我们的输入流和输出流
+         */
+
+
+        System.out.println("hello world");
+        /*
+        为什么调用 println 后，会打印在显示器上？
+        因为out 表示的是标准输出 显示器
+         */
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("请输入内容");
+        String next = scanner.next();
+        System.out.println("next = " + next);
+        /*
+        这里其实就是传入的 BufferInputStream  ，而 System.in 表示的是标准输入 键盘
+        所以当我们输入数据的时候， Scanner 会到我们的控制台去获取键盘输入的数据，
          */
     }
 }
