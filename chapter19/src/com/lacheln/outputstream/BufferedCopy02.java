@@ -9,7 +9,7 @@ import java.io.*;
  * @date 2022/10/30 10:53
  * @since 1.0.0
  * BufferedOutputStream 和 BufferedInputStream的使用，完成二进制文件拷贝
- * 字节流可以操作二进制文件,可以操作文本文件吗？ 可以
+ * 字节流可以操作二进制文件,可以操作文本文件吗？ 可以，文本文件仍然是二进制为基础的。
  */
 public class BufferedCopy02 {
     public static void main(String[] args) {
