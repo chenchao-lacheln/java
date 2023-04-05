@@ -16,6 +16,9 @@ import java.io.Serializable;
 public class Dog implements Serializable {
     private String name;
     private int age;
+    //序列化对象时，要求里面属性的类型也需要实现序列化接口
+    private Master master = new Master();
+
     //序列化对象时，默认将里面所有属性都进行序列化，但除了static和transient修饰的成员
     private static String nation;
     private transient String color;
@@ -54,6 +57,7 @@ public class Dog implements Serializable {
                 ", age=" + age +
                 ", color='" + color + '\'' +
                 ", nation='" + nation + '\'' +
+                ", master='" + master + '\'' +
                 '}';
     }
 }
