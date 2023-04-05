@@ -20,7 +20,7 @@ public class ObjectOutStream_ {
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath));
 
         //序列化数据到 /Users/chaochen/tmp/data.bat
-        oos.write(100); //int -->> Integer (实现了 Serializable)
+        oos.writeInt(100); //int -->> Integer (实现了 Serializable)
         oos.writeBoolean(true); //boolean -->> Boolean (实现了 Serializable)
         oos.writeChar('a'); //char -->> Character (实现了 Serializable)
         oos.writeDouble(9.5); // double -->> Double (实现了 Serializable)
