@@ -1,9 +1,7 @@
 package com.lacheln.outputstream;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 
 /**
  * ObjectOutStream_
@@ -27,20 +25,10 @@ public class ObjectOutStream_ {
         oos.writeUTF("超哥来了"); // String  (实现了 Serializable)
         // 保存一个dog对象
         // 注意：如果Dog对象没有实现Serializable 会执行程序会抛出异常
-        oos.writeObject(new Dog("旺财",18));
+        oos.writeObject(new Dog("旺财", 18));
 
         oos.close();
         System.out.printf("数据保存完毕（序列化形式）");
 
-    }
-}
-//如果需要序列化某个类的对象，需要实现 Serializable 接口
-class Dog implements Serializable {
-    private String name;
-    private int age;
-
-    public Dog(String name, int age) {
-        this.name = name;
-        this.age = age;
     }
 }
