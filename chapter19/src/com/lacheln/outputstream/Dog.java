@@ -16,14 +16,19 @@ import java.io.Serializable;
 public class Dog implements Serializable {
     private String name;
     private int age;
+    //序列化对象时，默认将里面所有属性都进行序列化，但除了static和transient修饰的成员
+    private static String nation;
+    private transient String color;
     //如果有增加序列化版本号的话，新增一个属性，不会被认为是一个全新的Dog类，会认为是原先Dog的升级版本
     private String hobby;
     //serialVersionVID 序列化的版本号，可以提高兼容性
     private static final long serialVersionVID = 1L;
 
-    public Dog(String name, int age) {
+    public Dog(String name, int age, String nation, String color) {
         this.name = name;
         this.age = age;
+        this.nation = nation;
+        this.color = color;
     }
 
     public String getName() {
@@ -47,6 +52,8 @@ public class Dog implements Serializable {
         return "Dog{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
+                ", color='" + color + '\'' +
+                ", nation='" + nation + '\'' +
                 '}';
     }
 }
