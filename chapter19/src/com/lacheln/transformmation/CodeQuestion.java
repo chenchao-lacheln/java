@@ -1,8 +1,6 @@
 package com.lacheln.transformmation;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 
 /**
  * CodeQuestion
@@ -30,5 +28,8 @@ public class CodeQuestion {
         String s = br.readLine();
         System.out.println("读取到的内容：" + s);
         br.close();
+
+//        InputStreamReader
+//        OutputStreamWriter
     }
 }
