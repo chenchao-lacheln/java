@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>java.io.PrintWriter</OriginalElement>
+  <nodes>
+    <node x="304.14798549986665" y="90.76708541758101">java.lang.Appendable</node>
+    <node x="86.11065992768685" y="-13.398835688355732">java.lang.AutoCloseable</node>
+    <node x="111.81367259797234" y="74.99893360072151">java.io.Closeable</node>
+    <node x="103.01892851576204" y="163.69105482083188">java.io.Writer</node>
+    <node x="-78.20851147096636" y="95.38111167738226">java.io.Flushable</node>
+    <node x="29.352655142063924" y="299.42432495341916">java.io.PrintWriter</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="java.io.Closeable" target="java.lang.AutoCloseable" relationship="INTERFACE_GENERALIZATION">
+      <point x="-8.703012670285489" y="-14.0" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.io.PrintWriter" target="java.io.Writer" relationship="GENERALIZATION">
+      <point x="9.666273373698118" y="-114.5" />
+      <point x="0.0" y="37.5" />
+    </edge>
+    <edge source="java.io.Writer" target="java.io.Flushable" relationship="REALIZATION">
+      <point x="-70.5" y="0.0" />
+      <point x="-17.708511470966357" y="201.19105482083188" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.io.Writer" target="java.io.Closeable" relationship="REALIZATION">
+      <point x="-0.20525591778969954" y="-37.5" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="java.io.Writer" target="java.lang.Appendable" relationship="REALIZATION">
+      <point x="70.5" y="0.0" />
+      <point x="373.64798549986665" y="201.19105482083188" />
+      <point x="0.0" y="14.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.7939609236234458" showDependencies="false" x="192.5000000000001" y="267.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
