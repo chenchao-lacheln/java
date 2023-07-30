@@ -9,14 +9,14 @@ import javax.swing.*;
  * @date 2022/7/18 22:39
  * @since 1.0.0
  */
-public class LachelnTankGame02 extends JFrame {
+public class LachelnTankGame03 extends JFrame {
     //定义一个MyPanel
     MyPanel mp = null;
     public static void main(String[] args) {
-        LachelnTankGame02 lachelnTankGame01 = new LachelnTankGame02();
+        LachelnTankGame03 lachelnTankGame01 = new LachelnTankGame03();
 
     }
-    public LachelnTankGame02(){
+    public LachelnTankGame03(){
         mp = new MyPanel();
         this.add(mp);//把面板（就是游戏的绘图区域）
         this.setSize(1000,750);//设置大小
