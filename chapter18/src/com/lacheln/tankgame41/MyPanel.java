@@ -47,6 +47,7 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
         Image image3 = null;
 
 
+
     public MyPanel() {
             hero = new Hero(100, 100);//初始化自己的坦克
             hero.setSpeed(5);//设置坦克的移动速度
