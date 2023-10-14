@@ -24,7 +24,7 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
     //定义一个Vector 用户存放炸弹
     //当子弹击中坦克时，加入Bomb对象到bombs
     Vector<Bomb> bombs = new Vector<>();
-    int enemyTankSize = 3;
+    int enemyTankSize = 6;
 
     //定义3张炸弹图片，显示爆炸效果
     Image image1 = null;
@@ -39,6 +39,8 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
         for (int i = 0; i < enemyTankSize; i++) {
             //创建一个敌人坦克
             EnemyTank enemyTank = new EnemyTank((100 * (i + 1)), 0);
+            //将enemyTanks 设置给 enemyTank !!!
+            enemyTank.setEnemyTanks(enemyTanks);
             //设置方向
             enemyTank.setDirect(2);
             //启动敌人坦克线程，让他动起来
