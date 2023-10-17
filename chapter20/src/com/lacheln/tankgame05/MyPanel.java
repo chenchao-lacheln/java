@@ -33,6 +33,8 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
 
 
     public MyPanel() {
+        //将MyPanel 对象的 enemyTanks 设置给 Recorder 的 enemyTanks (否则会报错 空指针异常652)
+        Recorder.setEnemyTanks(enemyTanks);
         hero = new Hero(100, 100);//初始化自己的坦克
         hero.setSpeed(5);//设置坦克的移动速度
         //初始化敌人坦克
