@@ -3,6 +3,7 @@ package com.lacheln.tankgame05;
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Scanner;
 
 /**
  * LachelnTankGame01
@@ -14,14 +15,17 @@ import java.awt.event.WindowEvent;
 public class LachelnTankGame5 extends JFrame {
     //定义一个MyPanel
     MyPanel mp = null;
-
+    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
+
         LachelnTankGame5 lachelnTankGame05 = new LachelnTankGame5();
 
     }
 
     public LachelnTankGame5() {
-        mp = new MyPanel();
+        System.out.println("请输入选择 1：新游戏 2：继续上局游戏");
+        String key = scanner.next();
+        mp = new MyPanel(key);
         //将mp，放入到Thread 并 启动
         new Thread(mp).start();
         this.add(mp);//把面板（就是游戏的绘图区域）
