@@ -60,11 +60,27 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
         image3 = Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/bomb_3.gif"));
     }
 
+    //编写方法，显示我方击毁地方坦克信息
+    public void showInfo(Graphics g){ //绘图需要传入 Graphics g
+        //画出玩家的总成绩
+        //设置画笔颜色
+        g.setColor(Color.BLACK);
+        //设置字体
+        Font font = new Font("宋体", Font.BOLD, 25);
+        g.setFont(font);
+
+        g.drawString("您累计击毁地方坦克",1020,30);
+        drawTank(1020,60,g,0,0);//画出一个地方坦克
+        g.setColor(Color.BLACK); //这里需要先设置成黑色
+        g.drawString("0",1080,100);
+
+    }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
         g.fillRect(0, 0, 1000, 750);//填充矩形，默认是黑色
-
+        showInfo(g);
         //画坦克-封装方法
         drawTank(hero.getX(), hero.getY(), g, hero.getDirect(), 1);
 
