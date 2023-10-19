@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import java.util.Vector;
 
 /**
@@ -35,7 +36,15 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
 
 
     public MyPanel(String key) {
-        nodes = Recorder.getNodesAndEnemyTankRec();
+        //先判断记录的文件是否存在
+        //如果存在，正常执行，如果文件不存在，提示，只能开启新游戏，key = "1"
+        File file = new File(Recorder.getRecodeFile());
+        if (file.exists()) {
+            nodes = Recorder.getNodesAndEnemyTankRec();
+        }else {
+            System.out.println("文件不存在，只能开启新的游戏");
+            key = "1";
+        }
         //将MyPanel 对象的 enemyTanks 设置给 Recorder 的 enemyTanks (否则会报错 空指针异常652)
         Recorder.setEnemyTanks(enemyTanks);
         hero = new Hero(100, 100);//初始化自己的坦克
@@ -95,7 +104,7 @@ public class MyPanel extends JPanel implements KeyListener, Runnable {
         image3 = Toolkit.getDefaultToolkit().getImage(Panel.class.getResource("/bomb_3.gif"));
 
         //播放指定音乐
-        new AePlayWave("src/111.wav").start();
+        new AePlayWave("chapter20/src/111.wav").start();
     }
 
     //编写方法，显示我方击毁地方坦克信息

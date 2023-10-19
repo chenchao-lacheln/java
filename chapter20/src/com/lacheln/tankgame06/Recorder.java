@@ -31,6 +31,11 @@ public class Recorder {
         return allEnemyTankNum;
     }
 
+    //返回记录文件的路径
+    public static String getRecodeFile() {
+        return recodeFile;
+    }
+
     //增加一个方法，用户读取RecordFile，恢复相关信息
     //该方法在继续上局游戏的时候，调用即可
     public static Vector<Node> getNodesAndEnemyTankRec(){
